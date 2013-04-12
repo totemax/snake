@@ -28,35 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+            this.canvasSnake = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.canvasSnake)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // canvasSnake
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.LightGreen;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 43);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(520, 390);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.canvasSnake.BackColor = System.Drawing.Color.LightGreen;
+            this.canvasSnake.Location = new System.Drawing.Point(12, 43);
+            this.canvasSnake.Name = "canvasSnake";
+            this.canvasSnake.Size = new System.Drawing.Size(520, 390);
+            this.canvasSnake.TabIndex = 0;
+            this.canvasSnake.TabStop = false;
+            this.canvasSnake.Paint += new System.Windows.Forms.PaintEventHandler(this.canvasSnake_Paint);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
             // 
             // Snake
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(544, 445);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.canvasSnake);
             this.Name = "Snake";
             this.Text = "Snake";
             this.Load += new System.EventHandler(this.Snake_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.canvasSnake)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox canvasSnake;
+        private System.Windows.Forms.Timer timer1;
     }
 }

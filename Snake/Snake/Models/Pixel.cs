@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
-namespace Snake.Controllers
+namespace Snake.Models
 {
     /*
      * Controller for game pixels 
