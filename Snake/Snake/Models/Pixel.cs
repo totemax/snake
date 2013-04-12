@@ -28,17 +28,19 @@ namespace Snake.Controllers
 
         #region [ Builders ]
 
-        public Pixel(int x, int y, int count)
+        public Pixel(int x, int y, int count, Color color)
         {
             this.x = x;
             this.y = y;
             this.count = count;
+            this.color = color;
         }
 
-        public Pixel(int x, int y)
+        public Pixel(int x, int y, Color color)
         {
             this.x = x;
             this.y = y;
+            this.color = color;
         }
 
         #endregion
