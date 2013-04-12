@@ -105,6 +105,17 @@ namespace Snake.Controllers
             return false;
         }
 
+        public bool eatMeat(Pixel meat) 
+        {
+            Pixel snakeHead = this.snakeBody[snakeBody.Count() - 1];
+            if (snakeHead.getX() == meat.getX() && snakeHead.getY() == meat.getX())
+            {
+                this.length++;
+                return true;
+            }
+            return false;
+        }
+
         #endregion
     }
 }
