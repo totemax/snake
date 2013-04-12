@@ -93,6 +93,18 @@ namespace Snake.Controllers
             snakeBody.Add(new Pixel(newX, newY, this.color));
         }
 
+        public bool hasColision(int maxX, int maxY)
+        {
+            Pixel snakeHead = this.snakeBody[snakeBody.Count() - 1];
+            if (snakeHead.getX() > maxX || snakeHead.getX() < 0) return true;
+            if (snakeHead.getY() > maxY || snakeHead.getY() < 0) return true;
+            foreach (Pixel px in this.snakeBody)
+            {
+                if (px.getX() == snakeHead.getX() && px.getY() == snakeHead.getY()) return true;
+            }
+            return false;
+        }
+
         #endregion
     }
 }
