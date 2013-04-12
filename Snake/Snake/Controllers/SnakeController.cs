@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Snake.Controllers
 {
-    public class Snake
+    public class SnakeController
     {
         #region [ Variables ]
 
@@ -18,7 +18,7 @@ namespace Snake.Controllers
         #region [ Builders ]
 
 
-        public Snake(int initX, int initY, int pixelL)
+        public SnakeController(int initX, int initY, int pixelL)
         {
             this.pixelL = pixelL;
             this.snakeBody = new List<Pixel>();

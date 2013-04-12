@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\Pixel.cs" />
-    <Compile Include="Controllers\Snake.cs" />
+    <Compile Include="Controllers\SnakeController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Snake.cs">
