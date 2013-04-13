@@ -47,6 +47,7 @@
             // timer1
             // 
             this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Snake
             // 
@@ -57,6 +58,7 @@
             this.Name = "Snake";
             this.Text = "Snake";
             this.Load += new System.EventHandler(this.Snake_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Snake_KeyDown_1);
             ((System.ComponentModel.ISupportInitialize)(this.canvasSnake)).EndInit();
             this.ResumeLayout(false);
 

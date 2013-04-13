@@ -14,7 +14,8 @@ namespace Snake.Controllers
             UP,
             DOWN,
             LEFT,
-            RIGHT
+            RIGHT,
+            NO_KEY
         }
 
         #region [ Variables ]
@@ -35,8 +36,8 @@ namespace Snake.Controllers
             this.pixelL = pixelL;
             this.color = snakeColor;
             this.snakeBody = new List<Pixel>();
-            this.snakeBody.Add(new Pixel(initX, initY, this.color));
-            this.snakeBody.Add(new Pixel(initX - this.pixelL, initY, this.color));
+            this.snakeBody.Add(new Pixel(initX, initY, 0,this.color));
+            this.snakeBody.Add(new Pixel(initX - this.pixelL, initY, 1, this.color));
         }
 
         #endregion
@@ -48,7 +49,7 @@ namespace Snake.Controllers
 
         public void setDirection(Directions direction)
         {
-            if (!isOpositteDirection(direction)) this.direction = direction;
+            if (!isOpositteDirection(direction) && !direction.Equals(Directions.NO_KEY)) this.direction = direction;
         }
 
         #endregion 
@@ -70,8 +71,10 @@ namespace Snake.Controllers
             {
                 Pixel px = snakeBody[i];
                 px.refresh();
-                if (px.getCount() > this.length)
+                if (px.getCount() >= this.length-1)
+                {
                     snakeBody.Remove(px);
+                }
             }
             Pixel snakeHead = this.snakeBody[snakeBody.Count() - 1];
             int newX = snakeHead.getX();
@@ -79,7 +82,7 @@ namespace Snake.Controllers
             switch (this.direction)
             {
                 case Directions.DOWN:
-                    newY -= this.pixelL;
+                    newY += this.pixelL;
                     break;
                 case Directions.LEFT:
                     newX -= this.pixelL;
@@ -88,7 +91,7 @@ namespace Snake.Controllers
                     newX += this.pixelL;
                     break;
                 case Directions.UP:
-                    newY += this.pixelL;
+                    newY -= this.pixelL;
                     break;
             }
             snakeBody.Add(new Pixel(newX, newY, this.color));
@@ -97,11 +100,11 @@ namespace Snake.Controllers
         public bool hasColision(int maxX, int maxY)
         {
             Pixel snakeHead = this.snakeBody[snakeBody.Count() - 1];
-            if (snakeHead.getX() > maxX || snakeHead.getX() < 0) return true;
-            if (snakeHead.getY() > maxY || snakeHead.getY() < 0) return true;
+            if (snakeHead.getX() >= maxX || snakeHead.getX() <= 0) return true;
+            if (snakeHead.getY() >= maxY || snakeHead.getY() <= 0) return true;
             foreach (Pixel px in this.snakeBody)
             {
-                if (px.getX() == snakeHead.getX() && px.getY() == snakeHead.getY()) return true;
+                if (px.getX() == snakeHead.getX() && px.getY() == snakeHead.getY() && px.getCount() != snakeHead.getCount()) return true;
             }
             return false;
         }
