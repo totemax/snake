@@ -112,7 +112,7 @@ namespace Snake.Controllers
         public bool eatMeat(Pixel meat) 
         {
             Pixel snakeHead = this.snakeBody[snakeBody.Count() - 1];
-            if (snakeHead.getX() == meat.getX() && snakeHead.getY() == meat.getX())
+            if (snakeHead.getX() == meat.getX() && snakeHead.getY() == meat.getY())
             {
                 this.length++;
                 return true;

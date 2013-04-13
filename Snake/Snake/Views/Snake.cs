@@ -75,6 +75,7 @@ namespace Snake
                 if (snake.eatMeat(meat.getMeatPixel()))
                 {
                     meat.generateMeat(snake.getSnakeBody());
+                    timer1.Interval -= (timer1.Interval * 5) / 100;
                 }
                 canvasSnake.Invalidate();
             }
