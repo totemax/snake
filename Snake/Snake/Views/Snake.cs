@@ -30,8 +30,8 @@ namespace Snake
 
         private void Snake_Load(object sender, EventArgs e)
         {
-            SoundPlayer player = new SoundPlayer(@"Science Is Interesting.wav");
-            player.PlayLooping();
+           // SoundPlayer player = new SoundPlayer(@"Science Is Interesting.wav");
+            //player.PlayLooping();
             timer1.Start();
             newGame();
 

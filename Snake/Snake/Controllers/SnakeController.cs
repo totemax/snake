@@ -100,8 +100,8 @@ namespace Snake.Controllers
         public bool hasColision(int maxX, int maxY)
         {
             Pixel snakeHead = this.snakeBody[snakeBody.Count() - 1];
-            if (snakeHead.getX() >= maxX || snakeHead.getX() <= 0) return true;
-            if (snakeHead.getY() >= maxY || snakeHead.getY() <= 0) return true;
+            if (snakeHead.getX() >= maxX || snakeHead.getX() < 0) return true;
+            if (snakeHead.getY() >= maxY || snakeHead.getY() < 0) return true;
             foreach (Pixel px in this.snakeBody)
             {
                 if (px.getX() == snakeHead.getX() && px.getY() == snakeHead.getY() && px.getCount() != snakeHead.getCount()) return true;
@@ -115,7 +115,7 @@ namespace Snake.Controllers
             if (snakeHead.getX() == meat.getX() && snakeHead.getY() == meat.getY())
             {
                 this.length++;
-                return true;
+                 return true;
             }
             return false;
         }
