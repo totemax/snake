@@ -33,7 +33,19 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblScore = new System.Windows.Forms.Label();
             this.score = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.juegoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dificultadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fácilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dificilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sCIENCEMODEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.canvasSnake)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // canvasSnake
@@ -54,7 +66,7 @@
             // lblScore
             // 
             this.lblScore.AutoSize = true;
-            this.lblScore.Location = new System.Drawing.Point(360, 13);
+            this.lblScore.Location = new System.Drawing.Point(424, 27);
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(38, 13);
             this.lblScore.TabIndex = 1;
@@ -63,11 +75,107 @@
             // score
             // 
             this.score.AutoSize = true;
-            this.score.Location = new System.Drawing.Point(405, 12);
+            this.score.Location = new System.Drawing.Point(468, 27);
             this.score.Name = "score";
             this.score.Size = new System.Drawing.Size(13, 13);
             this.score.TabIndex = 2;
             this.score.Text = "0";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.juegoToolStripMenuItem,
+            this.dificultadToolStripMenuItem,
+            this.ayudaToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(544, 24);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // juegoToolStripMenuItem
+            // 
+            this.juegoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevoToolStripMenuItem,
+            this.salirToolStripMenuItem});
+            this.juegoToolStripMenuItem.Name = "juegoToolStripMenuItem";
+            this.juegoToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.juegoToolStripMenuItem.Text = "Juego";
+            // 
+            // nuevoToolStripMenuItem
+            // 
+            this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.nuevoToolStripMenuItem.Text = "Nuevo";
+            this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
+            // dificultadToolStripMenuItem
+            // 
+            this.dificultadToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.dificultadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fácilToolStripMenuItem,
+            this.mediaToolStripMenuItem,
+            this.dificilToolStripMenuItem,
+            this.sCIENCEMODEToolStripMenuItem});
+            this.dificultadToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.dificultadToolStripMenuItem.Name = "dificultadToolStripMenuItem";
+            this.dificultadToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.dificultadToolStripMenuItem.Text = "Dificultad";
+            // 
+            // fácilToolStripMenuItem
+            // 
+            this.fácilToolStripMenuItem.Checked = true;
+            this.fácilToolStripMenuItem.CheckOnClick = true;
+            this.fácilToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.fácilToolStripMenuItem.Name = "fácilToolStripMenuItem";
+            this.fácilToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.fácilToolStripMenuItem.Text = "Fácil";
+            this.fácilToolStripMenuItem.Click += new System.EventHandler(this.difficultToolStripMenuItem_Click);
+            // 
+            // mediaToolStripMenuItem
+            // 
+            this.mediaToolStripMenuItem.CheckOnClick = true;
+            this.mediaToolStripMenuItem.Name = "mediaToolStripMenuItem";
+            this.mediaToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.mediaToolStripMenuItem.Text = "Media";
+            this.mediaToolStripMenuItem.Click += new System.EventHandler(this.difficultToolStripMenuItem_Click);
+            // 
+            // dificilToolStripMenuItem
+            // 
+            this.dificilToolStripMenuItem.CheckOnClick = true;
+            this.dificilToolStripMenuItem.Name = "dificilToolStripMenuItem";
+            this.dificilToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.dificilToolStripMenuItem.Text = "Dificil";
+            this.dificilToolStripMenuItem.Click += new System.EventHandler(this.difficultToolStripMenuItem_Click);
+            // 
+            // sCIENCEMODEToolStripMenuItem
+            // 
+            this.sCIENCEMODEToolStripMenuItem.CheckOnClick = true;
+            this.sCIENCEMODEToolStripMenuItem.Name = "sCIENCEMODEToolStripMenuItem";
+            this.sCIENCEMODEToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.sCIENCEMODEToolStripMenuItem.Text = "SCIENCE MODE!";
+            this.sCIENCEMODEToolStripMenuItem.Click += new System.EventHandler(this.difficultToolStripMenuItem_Click);
+            // 
+            // ayudaToolStripMenuItem
+            // 
+            this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.acercaDeToolStripMenuItem});
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            // 
+            // acercaDeToolStripMenuItem
+            // 
+            this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.acercaDeToolStripMenuItem.Text = "Acerca de...";
             // 
             // Snake
             // 
@@ -77,11 +185,15 @@
             this.Controls.Add(this.score);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.canvasSnake);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Snake";
             this.Text = "Snake";
             this.Load += new System.EventHandler(this.Snake_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Snake_KeyDown_1);
             ((System.ComponentModel.ISupportInitialize)(this.canvasSnake)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,5 +205,16 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Label score;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem juegoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fácilToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mediaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dificilToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sCIENCEMODEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dificultadToolStripMenuItem;
     }
 }

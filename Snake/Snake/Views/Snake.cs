@@ -21,6 +21,8 @@ namespace Snake
         int initialX = 260;
         int initialY = 195;
         int pixelLength = 13;
+        int defaultMeatVal = 100;
+        int timerReduction = 1;
         SnakeController.Directions nextDirection = SnakeController.Directions.NO_KEY;
         bool isGameOver = false;
         int[,] gameOverCoods = new int[,] {
@@ -135,9 +137,30 @@ namespace Snake
 
         private void newGame()
         {
+            if (dificilToolStripMenuItem.Checked)
+            {
+                this.meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.pixelLength, defaultMeatVal,3);
+                this.timerReduction = 7;
+                this.timer1.Interval = 140;
+            }
+            else if (mediaToolStripMenuItem.Checked)
+            {
+                this.meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.pixelLength, defaultMeatVal, 2);
+                this.timerReduction = 6;
+                this.timer1.Interval = 170;
+            }
+            else
+            {
+                this.meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.pixelLength, defaultMeatVal, 1);
+                this.timerReduction = 5;
+                this.timer1.Interval = 200;
+            }
             this.snake = new SnakeController(initialX, initialY, pixelLength, Color.Black);
-            this.meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.pixelLength);
+         
             meat.generateMeat(snake.getSnakeBody());
+            this.nextDirection = SnakeController.Directions.NO_KEY;
+            this.score.Text = "0";
+            this.isGameOver = false;
             canvasSnake.Invalidate();
         }
 
@@ -191,7 +214,7 @@ namespace Snake
                 {
                     incrementScore(meat.getActualValue());
                     meat.generateMeat(snake.getSnakeBody());
-                    timer1.Interval -= (timer1.Interval * 5) / 100;
+                    timer1.Interval -= (timer1.Interval * this.timerReduction) / 100;
                 }
                 else
                 {
@@ -225,6 +248,30 @@ namespace Snake
                     this.nextDirection = SnakeController.Directions.RIGHT;
                     break;
             }
+        }
+
+        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+            newGame();
+        }
+
+        private void difficultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            if (!item.Checked) item.Checked = true;
+            foreach (ToolStripMenuItem itemRB in dificultadToolStripMenuItem.DropDownItems)
+            {
+                if (itemRB != item)
+                {
+                    itemRB.Checked = false;
+                }
+            }
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }
