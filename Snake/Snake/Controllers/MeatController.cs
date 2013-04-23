@@ -15,6 +15,20 @@ namespace Snake.Controllers
         int maxX;
         int maxY;
         int lPixel;
+        int meatValue = 100;
+        int actualValue = 0;
+        int minValue = 1;
+
+        public MeatController(int maxX, int maxY, Color color, int lPixel, int meatValue, int minValue)
+        {
+            this.random = new Random();
+            this.color = color;
+            this.maxX = maxX;
+            this.maxY = maxY;
+            this.lPixel = lPixel;
+            this.meatValue = meatValue;
+            this.minValue = minValue;
+        }
 
         public MeatController(int maxX, int maxY, Color color, int lPixel)
         {
@@ -27,6 +41,9 @@ namespace Snake.Controllers
 
         public Pixel getMeatPixel() { return this.meatPixel; }
 
+        public int getActualValue() { return this.actualValue; }
+        public void setActualValue(int actualValue) { this.actualValue = actualValue; } 
+
         public Pixel generateMeat(List<Pixel> pixelsOccupied)
         {
             int x = random.Next(this.maxX);
@@ -37,6 +54,7 @@ namespace Snake.Controllers
                 y = random.Next(this.maxY);
             }
             this.meatPixel = new Pixel(x, y, this.color);
+            this.actualValue = this.meatValue;
             return this.meatPixel;
         }
 
@@ -47,6 +65,18 @@ namespace Snake.Controllers
                 if (px.getX() == x && px.getY() == y) return true;
             }
             return false;
+        }
+
+        public void decrementMeatScore(int decrement)
+        {
+            if (this.actualValue > decrement)
+            {
+                this.actualValue -= decrement;
+            }
+            else if (actualValue == decrement)
+            {
+                this.actualValue = this.minValue;
+            }
         }
 
     }

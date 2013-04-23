@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.canvasSnake = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblScore = new System.Windows.Forms.Label();
+            this.score = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvasSnake)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,11 +51,31 @@
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // lblScore
+            // 
+            this.lblScore.AutoSize = true;
+            this.lblScore.Location = new System.Drawing.Point(360, 13);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(38, 13);
+            this.lblScore.TabIndex = 1;
+            this.lblScore.Text = "Score:";
+            // 
+            // score
+            // 
+            this.score.AutoSize = true;
+            this.score.Location = new System.Drawing.Point(405, 12);
+            this.score.Name = "score";
+            this.score.Size = new System.Drawing.Size(13, 13);
+            this.score.TabIndex = 2;
+            this.score.Text = "0";
+            // 
             // Snake
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(544, 445);
+            this.Controls.Add(this.score);
+            this.Controls.Add(this.lblScore);
             this.Controls.Add(this.canvasSnake);
             this.Name = "Snake";
             this.Text = "Snake";
@@ -61,6 +83,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Snake_KeyDown_1);
             ((System.ComponentModel.ISupportInitialize)(this.canvasSnake)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -68,5 +91,7 @@
 
         private System.Windows.Forms.PictureBox canvasSnake;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblScore;
+        private System.Windows.Forms.Label score;
     }
 }
