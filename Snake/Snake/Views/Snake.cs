@@ -16,6 +16,8 @@ namespace Snake.Views
 {
     public partial class Snake : Form
     {
+        #region [Variable]
+
         SnakeController snake;
         MeatController meat;
         int initialX = 260;
@@ -27,6 +29,7 @@ namespace Snake.Views
         bool isGameOver = false;
         bool scienceMode = false;
         SoundPlayer player;
+        SoundPlayer looserPlayer;
         Random rnd;
         int[,] gameOverCoods = new int[,] {
         //Coordenadas de la G
@@ -123,20 +126,161 @@ namespace Snake.Views
         {286, 390}
         };
 
+        #endregion
+
+        #region [Builders]
 
         public Snake()
         {
             InitializeComponent();
         }
 
+        #endregion
+
+        #region [Events]
+
         private void Snake_Load(object sender, EventArgs e)
         {
             player = new SoundPlayer(@"Media/Science Is Interesting.wav");
+            looserPlayer = new SoundPlayer("Media/Sound of a Murloc.wav");
             timer1.Start();
             newGame();
             rnd = new Random();
 
         }
+
+        // Evento encargado de realizar el pintado del canvas
+        private void canvasSnake_Paint(object sender, PaintEventArgs e)
+        {
+            if (isGameOver)
+            {
+                drawGameOver(e);
+            }
+            else
+            {
+                foreach (Pixel px in snake.getSnakeBody())
+                {
+                    Color pxColor = px.getColor();
+                    if (scienceMode)
+                    {
+                        pxColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
+                    }
+                    Rectangle rct = new Rectangle(px.getX(), px.getY(), this.pixelLength, this.pixelLength);
+                    e.Graphics.FillRectangle(new SolidBrush(pxColor), rct);
+                }
+
+                Pixel brunch = meat.getMeatPixel();
+                Color branchColor = meat.getColor();
+                if (scienceMode)
+                {
+                    branchColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
+                }
+                Rectangle recBrunch = new Rectangle(brunch.getX(), brunch.getY(), this.pixelLength, this.pixelLength);
+                e.Graphics.FillRectangle(new SolidBrush(branchColor), recBrunch);
+            }
+        }
+
+        //Evento que se lanza cada vez que hay un tick en el timer.
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (snake.hasColision(canvasSnake.Width, canvasSnake.Height))
+            {
+                this.isGameOver = true;
+                timer1.Stop();
+                player.Stop();
+                looserPlayer.Play();
+            }
+            else
+            {
+                if (!this.nextDirection.Equals(SnakeController.Directions.NO_KEY))
+                {
+                    snake.setDirection(this.nextDirection);
+                    this.nextDirection = SnakeController.Directions.NO_KEY;
+                }
+                snake.refresh();
+                if (snake.eatMeat(meat.getMeatPixel()))
+                {
+                    incrementScore(meat.getActualValue());
+                    meat.generateMeat(snake.getSnakeBody());
+                    timer1.Interval -= (timer1.Interval * this.timerReduction) / 100;
+                }
+                else
+                {
+                    meat.decrementMeatScore(1);
+                }
+            }
+            canvasSnake.Invalidate();
+        }
+
+        //Evento que se encarga de parsear la entrada por teclado
+        private void Snake_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Down:
+                    this.nextDirection = SnakeController.Directions.DOWN;
+                    break;
+                case Keys.Up:
+                    this.nextDirection = SnakeController.Directions.UP;
+                    break;
+                case Keys.Left:
+                    this.nextDirection = SnakeController.Directions.LEFT;
+                    break;
+                case Keys.Right:
+                    this.nextDirection = SnakeController.Directions.RIGHT;
+                    break;
+                case Keys.Space:
+                    if (timer1.Enabled)
+                    {
+                        timer1.Stop();
+                    }
+                    else
+                    {
+                        timer1.Start();
+                    }
+                    break;
+            }
+        }
+
+        //Evento del boton "nuevo"
+        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+            newGame();
+        }
+
+        //Evento que se lanza al pulsar cualquier boton de dificultad para que funcionen como un radiobutton
+        private void difficultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            if (!item.Checked) item.Checked = true;
+            foreach (ToolStripMenuItem itemRB in dificultadToolStripMenuItem.DropDownItems)
+            {
+                if (itemRB != item)
+                {
+                    itemRB.Checked = false;
+                }
+            }
+        }
+
+        //Evento que controla el botón salir
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //Evento que lanza la pantalla de "Acerca de..."
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            About about = new About();
+            about.ShowDialog();
+            timer1.Start();
+        }
+
+        #endregion
+
+        #region [Functions & Methods]
 
         // Funcion que se encarga de iniciar un nuevo juego
         private void newGame()
@@ -191,70 +335,7 @@ namespace Snake.Views
                 Rectangle recPx = new Rectangle(gameOverCoods[i, 1], gameOverCoods[i, 0], this.pixelLength, this.pixelLength);
                 e.Graphics.FillRectangle(new SolidBrush(pxColor), recPx);
             }
-        }
-
-
-        // Evento encargado de realizar el pintado del canvas
-        private void canvasSnake_Paint(object sender, PaintEventArgs e)
-        {
-            if (isGameOver)
-            {
-                drawGameOver(e);
-            }
-            else
-            {
-                foreach (Pixel px in snake.getSnakeBody())
-                {
-                    Color pxColor = px.getColor();
-                    if (scienceMode)
-                    {
-                        pxColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
-                    }
-                    Rectangle rct = new Rectangle(px.getX(), px.getY(), this.pixelLength, this.pixelLength);
-                    e.Graphics.FillRectangle(new SolidBrush(pxColor), rct);
-                }
-
-                Pixel brunch = meat.getMeatPixel();
-                Color branchColor = meat.getColor();
-                if (scienceMode)
-                {
-                    branchColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
-                }
-                Rectangle recBrunch = new Rectangle(brunch.getX(), brunch.getY(), this.pixelLength, this.pixelLength);
-                e.Graphics.FillRectangle(new SolidBrush(branchColor), recBrunch);
-            }
-        }
-
-        //Evento que se lanza cada vez que hay un tick en el timer.
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (snake.hasColision(canvasSnake.Width, canvasSnake.Height))
-            {
-                this.isGameOver = true;
-                timer1.Stop();
-                player.Stop();
-            }
-            else
-            {
-                if (!this.nextDirection.Equals(SnakeController.Directions.NO_KEY))
-                {
-                    snake.setDirection(this.nextDirection);
-                    this.nextDirection = SnakeController.Directions.NO_KEY;
-                }
-                snake.refresh();
-                if (snake.eatMeat(meat.getMeatPixel()))
-                {
-                    incrementScore(meat.getActualValue());
-                    meat.generateMeat(snake.getSnakeBody());
-                    timer1.Interval -= (timer1.Interval * this.timerReduction) / 100;
-                }
-                else
-                {
-                    meat.decrementMeatScore(1);
-                }
-            }
-            canvasSnake.Invalidate();
-        }
+        }        
 
         //Funcion de control de la puntuacion
         private void incrementScore(int increment)
@@ -264,74 +345,7 @@ namespace Snake.Views
             score.Text = actualScore.ToString();
         }
 
-        //Evento que se encarga de parsear la entrada por teclado
-        private void Snake_KeyDown_1(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Down:
-                    this.nextDirection = SnakeController.Directions.DOWN;
-                    break;
-                case Keys.Up:
-                    this.nextDirection = SnakeController.Directions.UP;
-                    break;
-                case Keys.Left:
-                    this.nextDirection = SnakeController.Directions.LEFT;
-                    break;
-                case Keys.Right:
-                    this.nextDirection = SnakeController.Directions.RIGHT;
-                    break;
-                case Keys.Space:
-                    if (timer1.Enabled)
-                    {
-                        timer1.Stop();
-                    }
-                    else
-                    {
-                        timer1.Start();
-                    }
-                    break;
-                case Keys.F2:
-                    this.newGame();
-                    break;
-            }
-        }
-
-        //Evento del boton "nuevo"
-        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            timer1.Start();
-            newGame();
-        }
-
-        //Evento que se lanza al pulsar cualquier boton de dificultad para que funcionen como un radiobutton
-        private void difficultToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            if (!item.Checked) item.Checked = true;
-            foreach (ToolStripMenuItem itemRB in dificultadToolStripMenuItem.DropDownItems)
-            {
-                if (itemRB != item)
-                {
-                    itemRB.Checked = false;
-                }
-            }
-        }
-
-        //Evento que controla el botón salir
-        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        //Evento que lanza la pantalla de "Acerca de..."
-        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            timer1.Stop();
-            About about = new About();
-            about.ShowDialog();
-            timer1.Start();
-        }
+        #endregion
 
     }
 }
