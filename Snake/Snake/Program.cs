@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Snake.Views;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,7 +16,7 @@ namespace Snake
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Snake());
+            Application.Run(new Snake.Views.Snake());
         }
     }
 }
