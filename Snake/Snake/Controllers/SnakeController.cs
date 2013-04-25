@@ -7,6 +7,11 @@ using Snake.Models;
 
 namespace Snake.Controllers
 {
+    /**
+     * @Authors: arodrigo & jjorge
+     * 
+     * @Resume: Clase que controla el avance y parametros de la serpiente.
+     * */
     public class SnakeController
     {
         public enum Directions
