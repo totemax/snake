@@ -232,6 +232,7 @@ namespace Snake.Views
             {
                 this.isGameOver = true;
                 timer1.Stop();
+                player.Stop();
             }
             else
             {
