@@ -42,7 +42,8 @@ namespace Snake.Controllers
         public Pixel getMeatPixel() { return this.meatPixel; }
 
         public int getActualValue() { return this.actualValue; }
-        public void setActualValue(int actualValue) { this.actualValue = actualValue; } 
+        public void setActualValue(int actualValue) { this.actualValue = actualValue; }
+        public Color getColor() { return this.color; }
 
         public Pixel generateMeat(List<Pixel> pixelsOccupied)
         {

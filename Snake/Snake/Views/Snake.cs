@@ -25,6 +25,9 @@ namespace Snake.Views
         int timerReduction = 1;
         SnakeController.Directions nextDirection = SnakeController.Directions.NO_KEY;
         bool isGameOver = false;
+        bool scienceMode = false;
+        SoundPlayer player;
+        Random rnd;
         int[,] gameOverCoods = new int[,] {
         //Coordenadas de la G
         {104, 91},
@@ -128,26 +131,36 @@ namespace Snake.Views
 
         private void Snake_Load(object sender, EventArgs e)
         {
-           // SoundPlayer player = new SoundPlayer(@"Science Is Interesting.wav");
-            //player.PlayLooping();
+            player = new SoundPlayer(@"Media/Science Is Interesting.wav");
             timer1.Start();
             newGame();
+            rnd = new Random();
 
         }
 
         private void newGame()
         {
+            player.Stop();
+            scienceMode = false;
             if (dificilToolStripMenuItem.Checked)
             {
-                this.meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.pixelLength, defaultMeatVal,3);
+                this.meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.pixelLength, defaultMeatVal,1);
                 this.timerReduction = 7;
                 this.timer1.Interval = 140;
             }
             else if (mediaToolStripMenuItem.Checked)
             {
-                this.meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.pixelLength, defaultMeatVal, 2);
+                this.meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.pixelLength, defaultMeatVal, 1);
                 this.timerReduction = 6;
                 this.timer1.Interval = 170;
+            }
+            else if (sCIENCEMODEToolStripMenuItem.Checked)
+            {
+                player.PlayLooping();
+                this.meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, pixelLength, defaultMeatVal, 1);
+                this.timerReduction = 8;
+                this.timer1.Interval = 100;
+                scienceMode = true;
             }
             else
             {
@@ -168,8 +181,13 @@ namespace Snake.Views
         {
             for (int i = 0; i < gameOverCoods.GetLength(0); i++)
             {
+                Color pxColor = Color.Black;
+                if (scienceMode)
+                {
+                    pxColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
+                }
                 Rectangle recPx = new Rectangle(gameOverCoods[i, 1], gameOverCoods[i, 0], this.pixelLength, this.pixelLength);
-                e.Graphics.FillRectangle(new SolidBrush(Color.Black), recPx);
+                e.Graphics.FillRectangle(new SolidBrush(pxColor), recPx);
             }
         }
 
@@ -185,13 +203,23 @@ namespace Snake.Views
             {
                 foreach (Pixel px in snake.getSnakeBody())
                 {
+                    Color pxColor = px.getColor();
+                    if (scienceMode)
+                    {
+                        pxColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
+                    }
                     Rectangle rct = new Rectangle(px.getX(), px.getY(), this.pixelLength, this.pixelLength);
-                    e.Graphics.FillRectangle(new SolidBrush(px.getColor()), rct);
+                    e.Graphics.FillRectangle(new SolidBrush(pxColor), rct);
                 }
 
                 Pixel brunch = meat.getMeatPixel();
+                Color branchColor = meat.getColor();
+                if (scienceMode)
+                {
+                    branchColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
+                }
                 Rectangle recBrunch = new Rectangle(brunch.getX(), brunch.getY(), this.pixelLength, this.pixelLength);
-                e.Graphics.FillRectangle(new SolidBrush(Color.Black), recBrunch);
+                e.Graphics.FillRectangle(new SolidBrush(branchColor), recBrunch);
             }
         }
 
