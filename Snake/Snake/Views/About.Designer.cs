@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +56,15 @@
             this.panel1.Size = new System.Drawing.Size(357, 55);
             this.panel1.TabIndex = 1;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(48, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(269, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "GNU 2013 - Álvaro Rodrigo Corral & Jesús Jorge Serrano";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -65,15 +74,6 @@
             this.label1.Size = new System.Drawing.Size(112, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Science Snake v0.π";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(269, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "GNU 2013 - Álvaro Rodrigo Corral & Jesús Jorge Serrano";
             // 
             // About
             // 
@@ -87,6 +87,7 @@
             this.Name = "About";
             this.ShowIcon = false;
             this.Text = "About";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.About_FormClosing);
             this.Load += new System.EventHandler(this.About_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);

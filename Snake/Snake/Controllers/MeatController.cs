@@ -5,10 +5,17 @@ using System.Text;
 using System.Drawing;
 using Snake.Models;
 
+/**
+ * @authors: arodrigo jjorge
+ * 
+ * @resumen: Clase que se encarga de controlar el sistema de generación de comidas para la serpiente.
+ * */
 namespace Snake.Controllers
 {
     public class MeatController
     {
+        #region [Variables]
+
         Random random;
         Color color;
         Pixel meatPixel;
@@ -18,6 +25,10 @@ namespace Snake.Controllers
         int meatValue = 100;
         int actualValue = 0;
         int minValue = 1;
+
+        #endregion
+
+        #region [Builders]
 
         public MeatController(int maxX, int maxY, Color color, int lPixel, int meatValue, int minValue)
         {
@@ -39,11 +50,18 @@ namespace Snake.Controllers
             this.lPixel = lPixel;
         }
 
-        public Pixel getMeatPixel() { return this.meatPixel; }
+        #endregion
 
+        #region [Getters & Setters]
+
+        public Pixel getMeatPixel() { return this.meatPixel; }
         public int getActualValue() { return this.actualValue; }
         public void setActualValue(int actualValue) { this.actualValue = actualValue; }
         public Color getColor() { return this.color; }
+
+        #endregion
+
+        #region [Functions & Methods
 
         public Pixel generateMeat(List<Pixel> pixelsOccupied)
         {
@@ -79,6 +97,8 @@ namespace Snake.Controllers
                 this.actualValue = this.minValue;
             }
         }
+
+        #endregion
 
     }
 }

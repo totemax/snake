@@ -12,6 +12,8 @@ namespace Snake.Views
 {
     public partial class About : Form
     {
+        SoundPlayer player;
+
         public About()
         {
             InitializeComponent();
@@ -19,9 +21,16 @@ namespace Snake.Views
 
         private void About_Load(object sender, EventArgs e)
         {
-            SoundPlayer player = new SoundPlayer("Media/trololo.wav");
+            player = new SoundPlayer("Media/trololo.wav");
             player.PlayLooping();
         }
+
+        private void About_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            player.Stop();
+        }
+
+
 
 
     }
