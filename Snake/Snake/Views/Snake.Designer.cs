@@ -194,7 +194,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Snake";
-            this.Text = "Snake";
+            this.Text = "Science Snake";
             this.Load += new System.EventHandler(this.Snake_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Snake_KeyDown_1);
             ((System.ComponentModel.ISupportInitialize)(this.canvasSnake)).EndInit();

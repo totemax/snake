@@ -285,6 +285,9 @@ namespace Snake.Views
                         timer1.Start();
                     }
                     break;
+                case Keys.F2:
+                    this.newGame();
+                    break;
             }
         }
 
