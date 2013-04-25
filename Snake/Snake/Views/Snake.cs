@@ -12,7 +12,7 @@ using System.Media;
 using System.IO;
 using System.Reflection;
 
-namespace Snake
+namespace Snake.Views
 {
     public partial class Snake : Form
     {
@@ -247,6 +247,16 @@ namespace Snake
                 case Keys.Right:
                     this.nextDirection = SnakeController.Directions.RIGHT;
                     break;
+                case Keys.Space:
+                    if (timer1.Enabled)
+                    {
+                        timer1.Stop();
+                    }
+                    else
+                    {
+                        timer1.Start();
+                    }
+                    break;
             }
         }
 
@@ -272,6 +282,14 @@ namespace Snake
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            About about = new About();
+            about.ShowDialog();
+            timer1.Start();
         }
 
     }

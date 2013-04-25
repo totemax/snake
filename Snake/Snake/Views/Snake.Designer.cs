@@ -1,4 +1,4 @@
-﻿namespace Snake
+﻿namespace Snake.Views
 {
     partial class Snake
     {
@@ -51,6 +51,7 @@
             // canvasSnake
             // 
             this.canvasSnake.BackColor = System.Drawing.Color.LightGreen;
+            this.canvasSnake.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.canvasSnake.Location = new System.Drawing.Point(12, 43);
             this.canvasSnake.Name = "canvasSnake";
             this.canvasSnake.Size = new System.Drawing.Size(520, 390);
@@ -112,7 +113,7 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -174,8 +175,9 @@
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.acercaDeToolStripMenuItem.Text = "Acerca de...";
+            this.acercaDeToolStripMenuItem.Click += new System.EventHandler(this.acercaDeToolStripMenuItem_Click);
             // 
             // Snake
             // 
@@ -186,7 +188,9 @@
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.canvasSnake);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Snake";
             this.Text = "Snake";
             this.Load += new System.EventHandler(this.Snake_Load);
