@@ -138,6 +138,7 @@ namespace Snake.Views
 
         }
 
+        // Funcion que se encarga de iniciar un nuevo juego
         private void newGame()
         {
             player.Stop();
@@ -177,6 +178,7 @@ namespace Snake.Views
             canvasSnake.Invalidate();
         }
 
+        // Funcion que se encarga de pintar el letrero de "Game Over" cuando perdemos
         private void drawGameOver(PaintEventArgs e)
         {
             for (int i = 0; i < gameOverCoods.GetLength(0); i++)
@@ -192,7 +194,7 @@ namespace Snake.Views
         }
 
 
-
+        // Evento encargado de realizar el pintado del canvas
         private void canvasSnake_Paint(object sender, PaintEventArgs e)
         {
             if (isGameOver)
@@ -223,6 +225,7 @@ namespace Snake.Views
             }
         }
 
+        //Evento que se lanza cada vez que hay un tick en el timer.
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (snake.hasColision(canvasSnake.Width, canvasSnake.Height))
@@ -252,6 +255,7 @@ namespace Snake.Views
             canvasSnake.Invalidate();
         }
 
+        //Funcion de control de la puntuacion
         private void incrementScore(int increment)
         {
             int actualScore = int.Parse(score.Text);
@@ -259,6 +263,7 @@ namespace Snake.Views
             score.Text = actualScore.ToString();
         }
 
+        //Evento que se encarga de parsear la entrada por teclado
         private void Snake_KeyDown_1(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -291,12 +296,14 @@ namespace Snake.Views
             }
         }
 
+        //Evento del boton "nuevo"
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             timer1.Start();
             newGame();
         }
 
+        //Evento que se lanza al pulsar cualquier boton de dificultad para que funcionen como un radiobutton
         private void difficultToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
@@ -310,11 +317,13 @@ namespace Snake.Views
             }
         }
 
+        //Evento que controla el botón salir
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        //Evento que lanza la pantalla de "Acerca de..."
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             timer1.Stop();
