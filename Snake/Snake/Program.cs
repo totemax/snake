@@ -8,6 +8,16 @@ namespace Snake
 {
     static class Program
     {
+        public static Snake.Views.Snake Snake
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>

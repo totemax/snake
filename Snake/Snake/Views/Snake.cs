@@ -18,113 +18,19 @@ namespace Snake.Views
     {
         #region [Variable]
 
-        SnakeController snake;
-        MeatController meat;
-        int initialX = 260;
-        int initialY = 195;
-        int pixelLength = 13;
-        int defaultMeatVal = 100;
-        int timerReduction = 1;
-        SnakeController.Directions nextDirection = SnakeController.Directions.NO_KEY;
-        bool isGameOver = false;
-        bool scienceMode = false;
-        SoundPlayer player;
-        SoundPlayer looserPlayer;
-        Random rnd;
-        int[,] gameOverCoods = new int[,] {
-        //Coordenadas de la G
-        {104, 91},
-        {104, 104},
-        {117, 78},
-        {130, 78},
-        {130, 104},
-        {130, 117},
-        {143, 78},
-        {143, 117},
-        {156, 91},
-        {156, 104},
-        //Coordenadas de la A
-        {104, 156},
-        {104, 169},
-        {130, 156},
-        {130, 169},
-        {143, 143},
-        {143, 182},
-        {156, 143},
-        {156, 182},
-        //Coordenadas de la M
-        {104, 208},
-        {104, 260},
-        {117, 208}, 
-        {117, 221},
-        {117, 247},
-        {117, 260},
-        {130, 208}, 
-        {130, 234},
-        {130, 260},
-        {143, 208}, 
-        {143, 260},
-        {156, 208}, 
-        {156, 260},
-        //Coordenadas de la E
-        {104, 286}, 
-        {104, 299}, 
-        {104, 312},
-        {104, 325}, 
-        {130, 286}, 
-        {130, 299},
-        {130, 312},
-        {156, 286}, 
-        {156, 299}, 
-        {156, 312},
-        {156, 325},
-        //Coordenadas de la O
-        {234, 156},
-        {234, 169},
-        {247, 143},
-        {247, 182},
-        {260, 143},
-        {260, 182},
-        {273, 143},
-        {273, 182},
-        {286, 156},
-        {286, 169},
-        //Coordenadas de la V
-        {234, 208},
-        {234, 260},
-        {247, 208},
-        {247, 260},
-        {260, 221},
-        {260, 247},
-        {273, 221},
-        {273, 247},
-        {286, 234},
-        //Coordenadas de la E
-        {234, 286}, 
-        {234, 299}, 
-        {234, 312},
-        {234, 325},
-        {260, 286}, 
-        {260, 299},
-        {260, 312},
-        {286, 286}, 
-        {286, 299}, 
-        {286, 312},
-        {286, 325},
-        //Coordenadas de la R
-        {234, 351},
-        {234, 364},
-        {234, 377},
-        {247, 351},
-        {247, 377},
-        {260, 351},
-        {260, 364},
-        {260, 377},
-        {273, 351},
-        {273, 390},
-        {286, 351},
-        {286, 390}
-        };
+        SnakeController _snake;
+        MeatController _meat;
+        int _initialX = 130;
+        int _initialY = 130;
+        String GAME_OVER = "GAME OVER";
+        int PIXEL_LENGTH = 10;
+        int _defaultMeatVal = 100;
+        int _timerReduction = 1;
+        SnakeController.Directions _nextDirection = SnakeController.Directions.NO_KEY;
+        bool _isGameOver = false;
+        bool _isScienceMode = false;
+        SoundPlayer _looserPlayer;
+        Random _rnd;
 
         #endregion
 
@@ -137,45 +43,55 @@ namespace Snake.Views
 
         #endregion
 
+        public About About
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         #region [Events]
 
         private void Snake_Load(object sender, EventArgs e)
         {
-            player = new SoundPlayer(@"Media/Science Is Interesting.wav");
-            looserPlayer = new SoundPlayer("Media/Sound of a Murloc.wav");
+            _looserPlayer = new SoundPlayer("Media/Sound of a Murloc.wav");
             timer1.Start();
             newGame();
-            rnd = new Random();
+            _rnd = new Random();
 
         }
 
         // Evento encargado de realizar el pintado del canvas
         private void canvasSnake_Paint(object sender, PaintEventArgs e)
         {
-            if (isGameOver)
+            if (_isGameOver)
             {
                 drawGameOver(e);
             }
             else
             {
-                foreach (Pixel px in snake.getSnakeBody())
+                foreach (Pixel px in _snake.getSnakeBody())
                 {
                     Color pxColor = px.getColor();
-                    if (scienceMode)
+                    if (_isScienceMode)
                     {
-                        pxColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
+                        pxColor = Color.FromArgb(_rnd.Next(255), _rnd.Next(255), _rnd.Next(255));
                     }
-                    Rectangle rct = new Rectangle(px.getX(), px.getY(), this.pixelLength, this.pixelLength);
+                    Rectangle rct = new Rectangle(px.getX(), px.getY(), this.PIXEL_LENGTH, this.PIXEL_LENGTH);
                     e.Graphics.FillRectangle(new SolidBrush(pxColor), rct);
                 }
 
-                Pixel brunch = meat.getMeatPixel();
-                Color branchColor = meat.getColor();
-                if (scienceMode)
+                Pixel brunch = _meat.getMeatPixel();
+                Color branchColor = _meat.getColor();
+                if (_isScienceMode)
                 {
-                    branchColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
+                    branchColor = Color.FromArgb(_rnd.Next(255), _rnd.Next(255), _rnd.Next(255));
                 }
-                Rectangle recBrunch = new Rectangle(brunch.getX(), brunch.getY(), this.pixelLength, this.pixelLength);
+                Rectangle recBrunch = new Rectangle(brunch.getX(), brunch.getY(), this.PIXEL_LENGTH, this.PIXEL_LENGTH);
                 e.Graphics.FillRectangle(new SolidBrush(branchColor), recBrunch);
             }
         }
@@ -183,30 +99,30 @@ namespace Snake.Views
         //Evento que se lanza cada vez que hay un tick en el timer.
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (snake.hasColision(canvasSnake.Width, canvasSnake.Height))
+            if (_snake.hasColision(canvasSnake.Width, canvasSnake.Height))
             {
-                this.isGameOver = true;
+                this._isGameOver = true;
                 timer1.Stop();
-                player.Stop();
-                looserPlayer.Play();
+                _looserPlayer.Play();
             }
             else
             {
-                if (!this.nextDirection.Equals(SnakeController.Directions.NO_KEY))
+                if (!this._nextDirection.Equals(SnakeController.Directions.NO_KEY))
                 {
-                    snake.setDirection(this.nextDirection);
-                    this.nextDirection = SnakeController.Directions.NO_KEY;
+                    _snake.setDirection(this._nextDirection);
+                    this._nextDirection = SnakeController.Directions.NO_KEY;
                 }
-                snake.refresh();
-                if (snake.eatMeat(meat.getMeatPixel()))
+                _snake.refresh();
+                if (_snake.isEatMeat(_meat.getMeatPixel(), _meat.getMeatValue()))
                 {
-                    incrementScore(meat.getActualValue());
-                    meat.generateMeat(snake.getSnakeBody());
-                    timer1.Interval -= (timer1.Interval * this.timerReduction) / 100;
+                    incrementScore(_meat.getActualValue());
+                    _meat.generateMeat(_snake.getSnakeBody());
+                    this.lblMeat.Text = _meat.getMeatValue().ToString();
+                    timer1.Interval -= (timer1.Interval * this._timerReduction) / 100;
                 }
                 else
                 {
-                    meat.decrementMeatScore(1);
+                    _meat.decrementMeatScore(1);
                 }
             }
             canvasSnake.Invalidate();
@@ -218,16 +134,16 @@ namespace Snake.Views
             switch (e.KeyCode)
             {
                 case Keys.Down:
-                    this.nextDirection = SnakeController.Directions.DOWN;
+                    this._nextDirection = SnakeController.Directions.DOWN;
                     break;
                 case Keys.Up:
-                    this.nextDirection = SnakeController.Directions.UP;
+                    this._nextDirection = SnakeController.Directions.UP;
                     break;
                 case Keys.Left:
-                    this.nextDirection = SnakeController.Directions.LEFT;
+                    this._nextDirection = SnakeController.Directions.LEFT;
                     break;
                 case Keys.Right:
-                    this.nextDirection = SnakeController.Directions.RIGHT;
+                    this._nextDirection = SnakeController.Directions.RIGHT;
                     break;
                 case Keys.Space:
                     if (timer1.Enabled)
@@ -285,56 +201,40 @@ namespace Snake.Views
         // Funcion que se encarga de iniciar un nuevo juego
         private void newGame()
         {
-            player.Stop();
-            scienceMode = false;
+            _isScienceMode = false;
             if (dificilToolStripMenuItem.Checked)
             {
-                this.meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.pixelLength, defaultMeatVal,1);
-                this.timerReduction = 7;
+                this._meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.PIXEL_LENGTH, _defaultMeatVal,1);
+                this._timerReduction = 7;
                 this.timer1.Interval = 140;
             }
             else if (mediaToolStripMenuItem.Checked)
             {
-                this.meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.pixelLength, defaultMeatVal, 1);
-                this.timerReduction = 6;
+                this._meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.PIXEL_LENGTH, _defaultMeatVal, 1);
+                this._timerReduction = 6;
                 this.timer1.Interval = 170;
-            }
-            else if (sCIENCEMODEToolStripMenuItem.Checked)
-            {
-                player.PlayLooping();
-                this.meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, pixelLength, defaultMeatVal, 1);
-                this.timerReduction = 8;
-                this.timer1.Interval = 100;
-                scienceMode = true;
             }
             else
             {
-                this.meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.pixelLength, defaultMeatVal, 1);
-                this.timerReduction = 5;
+                this._meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.PIXEL_LENGTH, _defaultMeatVal, 1);
+                this._timerReduction = 5;
                 this.timer1.Interval = 200;
             }
-            this.snake = new SnakeController(initialX, initialY, pixelLength, Color.Black);
+            this._snake = new SnakeController(_initialX, _initialY, PIXEL_LENGTH, Color.Black);
          
-            meat.generateMeat(snake.getSnakeBody());
-            this.nextDirection = SnakeController.Directions.NO_KEY;
+            _meat.generateMeat(_snake.getSnakeBody());
+            this.lblMeat.Text = _meat.getMeatValue().ToString();
+            
+            this._nextDirection = SnakeController.Directions.NO_KEY;
             this.score.Text = "0";
-            this.isGameOver = false;
+            this._isGameOver = false;
             canvasSnake.Invalidate();
         }
 
         // Funcion que se encarga de pintar el letrero de "Game Over" cuando perdemos
         private void drawGameOver(PaintEventArgs e)
         {
-            for (int i = 0; i < gameOverCoods.GetLength(0); i++)
-            {
-                Color pxColor = Color.Black;
-                if (scienceMode)
-                {
-                    pxColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
-                }
-                Rectangle recPx = new Rectangle(gameOverCoods[i, 1], gameOverCoods[i, 0], this.pixelLength, this.pixelLength);
-                e.Graphics.FillRectangle(new SolidBrush(pxColor), recPx);
-            }
+            e.Graphics.DrawString(GAME_OVER, new Font("Impact", 20), Brushes.Black, new Point(70, 130));
         }        
 
         //Funcion de control de la puntuacion

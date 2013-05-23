@@ -5,26 +5,25 @@ using System.Text;
 using System.Drawing;
 using Snake.Models;
 
-/**
- * @authors: arodrigo jjorge
- * 
- * @resumen: Clase que se encarga de controlar el sistema de generación de comidas para la serpiente.
- * */
 namespace Snake.Controllers
 {
+    /// <summary>
+    /// Clase que se encarga de controlar el sistema de generación de comidas para la serpiente.
+    /// </summary>
     public class MeatController
     {
         #region [Variables]
 
-        Random random;
-        Color color;
-        Pixel meatPixel;
-        int maxX;
-        int maxY;
-        int lPixel;
-        int meatValue = 100;
-        int actualValue = 0;
-        int minValue = 1;
+        private Random _random;
+        private Color _color;
+        private Pixel _meatPixel;
+        private int _meatValue;
+        private int _maxX;
+        private int _maxY;
+        private int _lPixel;
+        private int _meatScore = 100;
+        private int _actualScore = 0;
+        private int _minValue = 1;
 
         #endregion
 
@@ -32,32 +31,68 @@ namespace Snake.Controllers
 
         public MeatController(int maxX, int maxY, Color color, int lPixel, int meatValue, int minValue)
         {
-            this.random = new Random();
-            this.color = color;
-            this.maxX = maxX;
-            this.maxY = maxY;
-            this.lPixel = lPixel;
-            this.meatValue = meatValue;
-            this.minValue = minValue;
+            this._random = new Random();
+            this._color = color;
+            this._maxX = maxX;
+            this._maxY = maxY;
+            this._lPixel = lPixel;
+            this._meatScore = meatValue;
+            this._minValue = minValue;
         }
 
         public MeatController(int maxX, int maxY, Color color, int lPixel)
         {
-            this.random = new Random();
-            this.color = color;
-            this.maxX = maxX;
-            this.maxY = maxY;
-            this.lPixel = lPixel;
+            this._random = new Random();
+            this._color = color;
+            this._maxX = maxX;
+            this._maxY = maxY;
+            this._lPixel = lPixel;
         }
 
         #endregion
 
+        public Snake.Models.Pixel Pixel
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         #region [Getters & Setters]
 
-        public Pixel getMeatPixel() { return this.meatPixel; }
-        public int getActualValue() { return this.actualValue; }
-        public void setActualValue(int actualValue) { this.actualValue = actualValue; }
-        public Color getColor() { return this.color; }
+        /// <summary>
+        /// Gets the meat pixel.
+        /// </summary>
+        /// <returns>Pixel</returns>
+        public Pixel getMeatPixel() { return this._meatPixel; }
+
+        /// <summary>
+        /// Gets the actual meat value
+        /// </summary>
+        /// <returns>integer</returns>
+        public int getActualValue() { return this._actualScore; }
+
+        /// <summary>
+        /// Sets the actual meat value
+        /// </summary>
+        /// <param name="actualValue">integer with the meat value</param>
+        public void setActualScore(int actualValue) { this._actualScore = actualValue; }
+
+        /// <summary>
+        /// Gets the meat color
+        /// </summary>
+        /// <returns>Color</returns>
+        public Color getColor() { return this._color; }
+
+        /// <summary>
+        /// Gets the meat value
+        /// </summary>
+        /// <returns></returns>
+        public int getMeatValue() { return this._meatValue; }
 
         #endregion
 
@@ -65,16 +100,17 @@ namespace Snake.Controllers
 
         public Pixel generateMeat(List<Pixel> pixelsOccupied)
         {
-            int x = random.Next(this.maxX);
-            int y = random.Next(this.maxY);
-            while (isPixelOccupied(x, y, pixelsOccupied) || x % lPixel != 0 || y % lPixel != 0)
+            int x = _random.Next(this._maxX);
+            int y = _random.Next(this._maxY);
+            while (isPixelOccupied(x, y, pixelsOccupied) || x % _lPixel != 0 || y % _lPixel != 0)
             {
-                x = random.Next(this.maxX);
-                y = random.Next(this.maxY);
+                x = _random.Next(this._maxX);
+                y = _random.Next(this._maxY);
             }
-            this.meatPixel = new Pixel(x, y, this.color);
-            this.actualValue = this.meatValue;
-            return this.meatPixel;
+            this._meatPixel = new Pixel(x, y, this._color);
+            this._actualScore = this._meatScore;
+            this._meatValue = _random.Next(4);
+            return this._meatPixel;
         }
 
         private bool isPixelOccupied(int x, int y, List<Pixel> pixelsOccupied)
@@ -88,13 +124,13 @@ namespace Snake.Controllers
 
         public void decrementMeatScore(int decrement)
         {
-            if (this.actualValue > decrement)
+            if (this._actualScore > decrement)
             {
-                this.actualValue -= decrement;
+                this._actualScore -= decrement;
             }
-            else if (actualValue == decrement)
+            else if (_actualScore == decrement)
             {
-                this.actualValue = this.minValue;
+                this._actualScore = this._minValue;
             }
         }
 

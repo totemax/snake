@@ -15,14 +15,14 @@ namespace Snake.Models
         #region [ Variables ]
 
         //Position variables
-        private int x;
-        private int y;
+        private int _x;
+        private int _y;
 
         //Color variables
-        private Color color;
+        private Color _color;
 
         //Position counter
-        private int count = 0;
+        private int _count = 0;
 
         #endregion
 
@@ -30,36 +30,36 @@ namespace Snake.Models
 
         public Pixel(int x, int y, int count, Color color)
         {
-            this.x = x;
-            this.y = y;
-            this.count = count;
-            this.color = color;
+            this._x = x;
+            this._y = y;
+            this._count = count;
+            this._color = color;
         }
 
         public Pixel(int x, int y, Color color)
         {
-            this.x = x;
-            this.y = y;
-            this.color = color;
+            this._x = x;
+            this._y = y;
+            this._color = color;
         }
 
         #endregion
 
         #region [ Getters & setters ]
 
-        public int getX() { return this.x; }
+        public int getX() { return this._x; }
 
-        public void setX(int x) { this.x = x; }
+        public void setX(int x) { this._x = x; }
 
-        public int getY() { return this.y; }
+        public int getY() { return this._y; }
 
-        public void setY(int y) { this.y = y; }
+        public void setY(int y) { this._y = y; }
 
-        public Color getColor() { return this.color; }
+        public Color getColor() { return this._color; }
 
-        public void setColor(Color color) { this.color = color; }
+        public void setColor(Color color) { this._color = color; }
 
-        public int getCount() { return this.count; }
+        public int getCount() { return this._count; }
 
         #endregion
 
@@ -67,7 +67,7 @@ namespace Snake.Models
 
         public void refresh()
         {
-            this.count++;
+            this._count++;
         }
 
         #endregion 
