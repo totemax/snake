@@ -25,6 +25,7 @@ namespace Snake.Controllers
         private int _actualScore = 0;
         private int _minValue = 1;
 
+
         #endregion
 
         #region [Builders]
@@ -96,7 +97,7 @@ namespace Snake.Controllers
 
         #endregion
 
-        #region [Functions & Methods
+        #region [Functions & Methods]
 
         public Pixel generateMeat(List<Pixel> pixelsOccupied)
         {
@@ -109,7 +110,7 @@ namespace Snake.Controllers
             }
             this._meatPixel = new Pixel(x, y, this._color);
             this._actualScore = this._meatScore;
-            this._meatValue = _random.Next(4);
+            this._meatValue = _random.Next(1, 4);
             return this._meatPixel;
         }
 
@@ -120,18 +121,6 @@ namespace Snake.Controllers
                 if (px.getX() == x && px.getY() == y) return true;
             }
             return false;
-        }
-
-        public void decrementMeatScore(int decrement)
-        {
-            if (this._actualScore > decrement)
-            {
-                this._actualScore -= decrement;
-            }
-            else if (_actualScore == decrement)
-            {
-                this._actualScore = this._minValue;
-            }
         }
 
         #endregion

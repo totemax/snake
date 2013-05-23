@@ -23,12 +23,9 @@ namespace Snake.Views
         int _initialX = 130;
         int _initialY = 130;
         String GAME_OVER = "GAME OVER";
-        int PIXEL_LENGTH = 10;
-        int _defaultMeatVal = 100;
-        int _timerReduction = 1;
+        int PIXEL_LENGTH = 13;
         SnakeController.Directions _nextDirection = SnakeController.Directions.NO_KEY;
         bool _isGameOver = false;
-        bool _isScienceMode = false;
         SoundPlayer _looserPlayer;
         Random _rnd;
 
@@ -77,20 +74,12 @@ namespace Snake.Views
                 foreach (Pixel px in _snake.getSnakeBody())
                 {
                     Color pxColor = px.getColor();
-                    if (_isScienceMode)
-                    {
-                        pxColor = Color.FromArgb(_rnd.Next(255), _rnd.Next(255), _rnd.Next(255));
-                    }
                     Rectangle rct = new Rectangle(px.getX(), px.getY(), this.PIXEL_LENGTH, this.PIXEL_LENGTH);
                     e.Graphics.FillRectangle(new SolidBrush(pxColor), rct);
                 }
 
                 Pixel brunch = _meat.getMeatPixel();
                 Color branchColor = _meat.getColor();
-                if (_isScienceMode)
-                {
-                    branchColor = Color.FromArgb(_rnd.Next(255), _rnd.Next(255), _rnd.Next(255));
-                }
                 Rectangle recBrunch = new Rectangle(brunch.getX(), brunch.getY(), this.PIXEL_LENGTH, this.PIXEL_LENGTH);
                 e.Graphics.FillRectangle(new SolidBrush(branchColor), recBrunch);
             }
@@ -115,14 +104,8 @@ namespace Snake.Views
                 _snake.refresh();
                 if (_snake.isEatMeat(_meat.getMeatPixel(), _meat.getMeatValue()))
                 {
-                    incrementScore(_meat.getActualValue());
                     _meat.generateMeat(_snake.getSnakeBody());
                     this.lblMeat.Text = _meat.getMeatValue().ToString();
-                    timer1.Interval -= (timer1.Interval * this._timerReduction) / 100;
-                }
-                else
-                {
-                    _meat.decrementMeatScore(1);
                 }
             }
             canvasSnake.Invalidate();
@@ -201,7 +184,6 @@ namespace Snake.Views
         // Funcion que se encarga de iniciar un nuevo juego
         private void newGame()
         {
-            _isScienceMode = false;
             if (dificilToolStripMenuItem.Checked)
             {
                 this._meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.PIXEL_LENGTH, _defaultMeatVal,1);

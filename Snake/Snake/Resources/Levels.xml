@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<levels>
+  <level id="lvl_1">
+    <tickTimer>1000</tickTimer>
+    <scoreLvl>10</scoreLvl>
+    <board newBoard="true"></board>
+  </level>
+  <level id="lvl_2">
+    <tickTimer>800</tickTimer>
+    <scoreLvl>15</scoreLvl>
+    <board newBoard="false"></board>
+  </level>
+  <level id="lvl_3">
+    <tickTimer>750</tickTimer>
+    <scoreLvl>20</scoreLvl>
+    <board newBoard="true">
+      <obstacle x="120" y="150" />
+    </board>
+  </level>
+  <level id="lvl_4">
+    <tickTimer>700</tickTimer>
+    <scoreLvl>25</scoreLvl>
+    <board newBoard="false">
+      <obstacle x="120" y="150" />
+    </board>
+  </level>
+  <level id="lvl_5">
+    <tickTimer>650</tickTimer>
+    <scoreLvl>30</scoreLvl>
+    <board newBoard="true">
+      <obstacle x="120" y="150" />
+    </board>
+  </level>
+  <level id="lvl_6">
+    <tickTimer>1000</tickTimer>
+    <scoreLvl>35</scoreLvl>
+    <board newBoard="true">
+      <obstacle x="120" y="150" />
+    </board>
+  </level>
+</levels>

@@ -56,7 +56,7 @@
             this.canvasSnake.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.canvasSnake.Location = new System.Drawing.Point(12, 43);
             this.canvasSnake.Name = "canvasSnake";
-            this.canvasSnake.Size = new System.Drawing.Size(500, 500);
+            this.canvasSnake.Size = new System.Drawing.Size(260, 260);
             this.canvasSnake.TabIndex = 0;
             this.canvasSnake.TabStop = false;
             this.canvasSnake.Paint += new System.Windows.Forms.PaintEventHandler(this.canvasSnake_Paint);
@@ -69,7 +69,7 @@
             // lblScore
             // 
             this.lblScore.AutoSize = true;
-            this.lblScore.Location = new System.Drawing.Point(215, 27);
+            this.lblScore.Location = new System.Drawing.Point(195, 26);
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(38, 13);
             this.lblScore.TabIndex = 1;
@@ -78,7 +78,7 @@
             // score
             // 
             this.score.AutoSize = true;
-            this.score.Location = new System.Drawing.Point(259, 27);
+            this.score.Location = new System.Drawing.Point(239, 27);
             this.score.Name = "score";
             this.score.Size = new System.Drawing.Size(13, 13);
             this.score.TabIndex = 2;
@@ -92,7 +92,7 @@
             this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(522, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(284, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -138,7 +138,7 @@
             this.fácilToolStripMenuItem.CheckOnClick = true;
             this.fácilToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.fácilToolStripMenuItem.Name = "fácilToolStripMenuItem";
-            this.fácilToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fácilToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.fácilToolStripMenuItem.Text = "Fácil";
             this.fácilToolStripMenuItem.Click += new System.EventHandler(this.difficultToolStripMenuItem_Click);
             // 
@@ -146,7 +146,7 @@
             // 
             this.mediaToolStripMenuItem.CheckOnClick = true;
             this.mediaToolStripMenuItem.Name = "mediaToolStripMenuItem";
-            this.mediaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mediaToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.mediaToolStripMenuItem.Text = "Media";
             this.mediaToolStripMenuItem.Click += new System.EventHandler(this.difficultToolStripMenuItem_Click);
             // 
@@ -154,7 +154,7 @@
             // 
             this.dificilToolStripMenuItem.CheckOnClick = true;
             this.dificilToolStripMenuItem.Name = "dificilToolStripMenuItem";
-            this.dificilToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dificilToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.dificilToolStripMenuItem.Text = "Dificil";
             this.dificilToolStripMenuItem.Click += new System.EventHandler(this.difficultToolStripMenuItem_Click);
             // 
@@ -196,7 +196,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(522, 552);
+            this.ClientSize = new System.Drawing.Size(284, 316);
             this.Controls.Add(this.lblMeat);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.score);
