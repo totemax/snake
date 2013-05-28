@@ -24,6 +24,8 @@ namespace Snake.Controllers
         #region [ Variables ]
 
         private List<Pixel> _snakeBody;
+        private int _xLength;
+        private int _yLength;
         private int _pixelL;
         private int _length = 1;
         private Directions _direction = Directions.LEFT;
@@ -34,12 +36,18 @@ namespace Snake.Controllers
         #region [ Builders ]
 
 
-        public SnakeController(int initX, int initY, int pixelL, Color snakeColor)
+        public SnakeController(int xLength, int yLength, int pixelL, Color snakeColor)
         {
+            this._xLength = xLength;
+            this._yLength = yLength;
+
+            int numPixelsX = xLength % pixelL;
+            int numPixelsY = yLength % pixelL;
+
             this._pixelL = pixelL;
             this._color = snakeColor;
             this._snakeBody = new List<Pixel>();
-            this._snakeBody.Add(new Pixel(initX, initY, 0,this._color));
+            this._snakeBody.Add(new Pixel((numPixelsX % 2) * pixelL, (numPixelsY % 2) * pixelL, 0, this._color));
         }
 
         #endregion
@@ -139,24 +147,12 @@ namespace Snake.Controllers
         /// <param name="maxX">Max x of the screen </param>
         /// <param name="maxY">Max y of the screen</param>
         /// <returns>Boolean</returns>
-        public bool hasColision(int maxX, int maxY)
+        public bool hasColision()
         {
             Pixel snakeHead = this._snakeBody[_snakeBody.Count() - 1];
-            if (snakeHead.getX() >= maxX){
-                snakeHead.setX(0);
+            if (snakeHead.getX() >= this._xLength || snakeHead.getX() < 0 || snakeHead.getY() >= this._yLength || snakeHead.getY() < 0){
+                return true;
             }
-            if (snakeHead.getX() < 0)
-            {
-                snakeHead.setX(maxX);
-            }
-            if (snakeHead.getY() >= maxY)
-            {
-                snakeHead.setY(0);
-            }
-            if (snakeHead.getY() < 0)
-            {
-                snakeHead.setY(maxY);
-            } 
             foreach (Pixel px in this._snakeBody)
             {
                 if (px.getX() == snakeHead.getX() && px.getY() == snakeHead.getY() && px.getCount() != snakeHead.getCount()) return true;
@@ -164,28 +160,9 @@ namespace Snake.Controllers
             return false;
         }
 
-        /// <summary>
-        /// Return and updates the snake's state if a piece of meat is eaten.
-        /// </summary>
-        /// <param name="meat">the meat pixel</param>
-        /// <param name="meatValue">the meat length value</param>
-        /// <returns>boolean</returns>
-        public bool isEatMeat(Pixel meat, int meatValue) 
+        public void eatMeat(int meatValue)
         {
-            Pixel snakeHead = this._snakeBody[_snakeBody.Count() - 1];
-            if (snakeHead.getX() == meat.getX() && snakeHead.getY() == meat.getY())
-            {
-                if (meatValue<0 && (this._length - meatValue) < 1)
-                {
-                    this._length = 1;
-                }
-                else
-                {
-                    this._length += meatValue;
-                }
-                return true;
-            }
-            return false;
+            this._length += meatValue;
         }
 
         #endregion

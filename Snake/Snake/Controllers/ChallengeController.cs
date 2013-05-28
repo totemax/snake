@@ -8,21 +8,18 @@ using Snake.Models;
 namespace Snake.Controllers
 {
 
-    class ChallengeController : IGameController
+    class ChallengeController : GameController, IGameController
     {
         private static String LVL_PREFIX = "lvl_";
 
         private XmlDocument _lvlsDoc = null;
 
-
-
         private int _lvlNum = 1;
         private Boolean _isBoardLoaded = false;
-        private int _tickTimer = 1000;
         private int _scoreLvl = 10;
         private List<Pixel> _obstacles = null;
 
-        public ChallengeController(int startLvl)
+        public ChallengeController(int startLvl, int initX, int initY, int pixelL) : base(initX, initY, pixelL, System.Drawing.Color.Black)
         {
             this._lvlNum = startLvl;
             this.loadLvl();
@@ -59,13 +56,13 @@ namespace Snake.Controllers
                 {
                     if (lvlBoard.HasChildNodes)
                     {
-                        this._obstacles = new Pixel []{ };
+                        this._obstacles = new List<Pixel>();
                         foreach (XmlNode obstacleNode in lvlBoard.ChildNodes)
                         {   
                             int x =  int.Parse(obstacleNode.Attributes["x"].Value);
                             int y = int.Parse(obstacleNode.Attributes["y"].Value);
                             Pixel pxlObstacle = new Pixel(x, y, System.Drawing.Color.Black);
-                            this._obstacles.
+                            this._obstacles.Add(pxlObstacle);
                         }
                     }
                 }

@@ -8,13 +8,14 @@ namespace Snake.Controllers
 {
     public interface IGameController
     {
-        public String gameResult();
 
-        public Pixel[] refresh(SnakeController.Directions direction);
+        String gameResult();
 
-        public Boolean isLevelChanged();
+        List<Pixel> refresh(SnakeController.Directions direction);
 
-        public int getTickerTimer();
+        Boolean isLevelChanged();
+
+        int getTickerTimer();
 
     }
 }
