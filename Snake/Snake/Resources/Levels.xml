@@ -1,4 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<!DOCTYPE levels [
+  <!ELEMENT levels ANY>
+  <!ELEMENT level ANY>
+  <!ELEMENT tickTimer ANY>
+  <!ELEMENT scoreLvl ANY>
+  <!ELEMENT board ANY>
+  <!ATTLIST level id ID #REQUIRED>
+  <!ATTLIST board newBoard CDATA #REQUIRED>
+]>
 <levels>
   <level id="lvl_1">
     <tickTimer>1000</tickTimer>

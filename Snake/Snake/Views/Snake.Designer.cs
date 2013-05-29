@@ -37,11 +37,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.juegoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.competiciónIndividualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dificultadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fácilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dificilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
@@ -88,7 +85,6 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.juegoToolStripMenuItem,
-            this.dificultadToolStripMenuItem,
             this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -107,56 +103,26 @@
             // 
             // nuevoToolStripMenuItem
             // 
+            this.nuevoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.competiciónIndividualToolStripMenuItem});
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
-            this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
+            // 
+            // competiciónIndividualToolStripMenuItem
+            // 
+            this.competiciónIndividualToolStripMenuItem.Name = "competiciónIndividualToolStripMenuItem";
+            this.competiciónIndividualToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.competiciónIndividualToolStripMenuItem.Tag = "competicion";
+            this.competiciónIndividualToolStripMenuItem.Text = "Competición individual";
+            this.competiciónIndividualToolStripMenuItem.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
-            // 
-            // dificultadToolStripMenuItem
-            // 
-            this.dificultadToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.dificultadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fácilToolStripMenuItem,
-            this.mediaToolStripMenuItem,
-            this.dificilToolStripMenuItem});
-            this.dificultadToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.dificultadToolStripMenuItem.Name = "dificultadToolStripMenuItem";
-            this.dificultadToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
-            this.dificultadToolStripMenuItem.Text = "Dificultad";
-            // 
-            // fácilToolStripMenuItem
-            // 
-            this.fácilToolStripMenuItem.Checked = true;
-            this.fácilToolStripMenuItem.CheckOnClick = true;
-            this.fácilToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.fácilToolStripMenuItem.Name = "fácilToolStripMenuItem";
-            this.fácilToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.fácilToolStripMenuItem.Text = "Fácil";
-            this.fácilToolStripMenuItem.Click += new System.EventHandler(this.difficultToolStripMenuItem_Click);
-            // 
-            // mediaToolStripMenuItem
-            // 
-            this.mediaToolStripMenuItem.CheckOnClick = true;
-            this.mediaToolStripMenuItem.Name = "mediaToolStripMenuItem";
-            this.mediaToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.mediaToolStripMenuItem.Text = "Media";
-            this.mediaToolStripMenuItem.Click += new System.EventHandler(this.difficultToolStripMenuItem_Click);
-            // 
-            // dificilToolStripMenuItem
-            // 
-            this.dificilToolStripMenuItem.CheckOnClick = true;
-            this.dificilToolStripMenuItem.Name = "dificilToolStripMenuItem";
-            this.dificilToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.dificilToolStripMenuItem.Text = "Dificil";
-            this.dificilToolStripMenuItem.Click += new System.EventHandler(this.difficultToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -229,13 +195,10 @@
         private System.Windows.Forms.ToolStripMenuItem juegoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fácilToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mediaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dificilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dificultadToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblMeat;
+        private System.Windows.Forms.ToolStripMenuItem competiciónIndividualToolStripMenuItem;
     }
 }

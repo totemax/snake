@@ -16,18 +16,20 @@ namespace Snake.Views
 {
     public partial class Snake : Form
     {
-        #region [Variable]
+        #region [Constants]
 
-        SnakeController _snake;
-        MeatController _meat;
-        int _initialX = 130;
-        int _initialY = 130;
-        String GAME_OVER = "GAME OVER";
+            private static String NEW_GAME = "SELECCIONE UN MODO DE JUEGO PARA INICIAR PARTIDA";
+            private static String PUSH_START = "Pulse espacio para iniciar la partida";    
+        #endregion
+
+
+        #region [Variables]
+
+        String _messageToRender = null;
         int PIXEL_LENGTH = 13;
+        List<Pixel> _pixelsToRender = null;
         SnakeController.Directions _nextDirection = SnakeController.Directions.NO_KEY;
-        bool _isGameOver = false;
-        SoundPlayer _looserPlayer;
-        Random _rnd;
+        IGameController _gameMode = null;
 
         #endregion
 
@@ -55,58 +57,39 @@ namespace Snake.Views
 
         private void Snake_Load(object sender, EventArgs e)
         {
-            _looserPlayer = new SoundPlayer("Media/Sound of a Murloc.wav");
-            timer1.Start();
-            newGame();
-            _rnd = new Random();
-
+            this._messageToRender = NEW_GAME;
+            this.canvasSnake.Invalidate();
         }
 
         // Evento encargado de realizar el pintado del canvas
         private void canvasSnake_Paint(object sender, PaintEventArgs e)
         {
-            if (_isGameOver)
+            if (this._messageToRender != null)
             {
-                drawGameOver(e);
+                this.drawText(this._messageToRender, e);
+                this._messageToRender = null;
             }
-            else
+            if(this._pixelsToRender != null)
             {
-                foreach (Pixel px in _snake.getSnakeBody())
+                foreach (Pixel px in this._pixelsToRender)
                 {
                     Color pxColor = px.getColor();
                     Rectangle rct = new Rectangle(px.getX(), px.getY(), this.PIXEL_LENGTH, this.PIXEL_LENGTH);
                     e.Graphics.FillRectangle(new SolidBrush(pxColor), rct);
                 }
-
-                Pixel brunch = _meat.getMeatPixel();
-                Color branchColor = _meat.getColor();
-                Rectangle recBrunch = new Rectangle(brunch.getX(), brunch.getY(), this.PIXEL_LENGTH, this.PIXEL_LENGTH);
-                e.Graphics.FillRectangle(new SolidBrush(branchColor), recBrunch);
             }
         }
 
         //Evento que se lanza cada vez que hay un tick en el timer.
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (_snake.hasColision(canvasSnake.Width, canvasSnake.Height))
+            this._pixelsToRender = this._gameMode.refresh(this._nextDirection);
+
+            this._messageToRender = this._gameMode.gameResult();
+
+            if (this._messageToRender != null)
             {
-                this._isGameOver = true;
-                timer1.Stop();
-                _looserPlayer.Play();
-            }
-            else
-            {
-                if (!this._nextDirection.Equals(SnakeController.Directions.NO_KEY))
-                {
-                    _snake.setDirection(this._nextDirection);
-                    this._nextDirection = SnakeController.Directions.NO_KEY;
-                }
-                _snake.refresh();
-                if (_snake.isEatMeat(_meat.getMeatPixel(), _meat.getMeatValue()))
-                {
-                    _meat.generateMeat(_snake.getSnakeBody());
-                    this.lblMeat.Text = _meat.getMeatValue().ToString();
-                }
+                this.timer1.Stop();
             }
             canvasSnake.Invalidate();
         }
@@ -141,27 +124,6 @@ namespace Snake.Views
             }
         }
 
-        //Evento del boton "nuevo"
-        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            timer1.Start();
-            newGame();
-        }
-
-        //Evento que se lanza al pulsar cualquier boton de dificultad para que funcionen como un radiobutton
-        private void difficultToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            if (!item.Checked) item.Checked = true;
-            foreach (ToolStripMenuItem itemRB in dificultadToolStripMenuItem.DropDownItems)
-            {
-                if (itemRB != item)
-                {
-                    itemRB.Checked = false;
-                }
-            }
-        }
-
         //Evento que controla el botón salir
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -181,43 +143,12 @@ namespace Snake.Views
 
         #region [Functions & Methods]
 
-        // Funcion que se encarga de iniciar un nuevo juego
-        private void newGame()
-        {
-            if (dificilToolStripMenuItem.Checked)
-            {
-                this._meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.PIXEL_LENGTH, _defaultMeatVal,1);
-                this._timerReduction = 7;
-                this.timer1.Interval = 140;
-            }
-            else if (mediaToolStripMenuItem.Checked)
-            {
-                this._meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.PIXEL_LENGTH, _defaultMeatVal, 1);
-                this._timerReduction = 6;
-                this.timer1.Interval = 170;
-            }
-            else
-            {
-                this._meat = new MeatController(canvasSnake.Width, canvasSnake.Height, Color.Black, this.PIXEL_LENGTH, _defaultMeatVal, 1);
-                this._timerReduction = 5;
-                this.timer1.Interval = 200;
-            }
-            this._snake = new SnakeController(_initialX, _initialY, PIXEL_LENGTH, Color.Black);
-         
-            _meat.generateMeat(_snake.getSnakeBody());
-            this.lblMeat.Text = _meat.getMeatValue().ToString();
-            
-            this._nextDirection = SnakeController.Directions.NO_KEY;
-            this.score.Text = "0";
-            this._isGameOver = false;
-            canvasSnake.Invalidate();
-        }
-
         // Funcion que se encarga de pintar el letrero de "Game Over" cuando perdemos
-        private void drawGameOver(PaintEventArgs e)
+        private void drawText(String message, PaintEventArgs e)
         {
-            e.Graphics.DrawString(GAME_OVER, new Font("Impact", 20), Brushes.Black, new Point(70, 130));
+            e.Graphics.DrawString(message, new Font("Impact", 20), Brushes.Black, new Point(70, 130));
         }        
+
 
         //Funcion de control de la puntuacion
         private void incrementScore(int increment)
@@ -228,6 +159,24 @@ namespace Snake.Views
         }
 
         #endregion
+
+        private void gameModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.timer1.Stop();
+            ToolStripDropDownItem item = (ToolStripDropDownItem)sender;
+            this._pixelsToRender = null;
+
+            switch (item.Tag.ToString())
+            {
+                case "competicion":
+                    this._gameMode = new ChallengeController(this.canvasSnake.Width, this.canvasSnake.Height, this.PIXEL_LENGTH);
+                    break;
+            }
+
+            this._messageToRender = PUSH_START;
+
+            this.canvasSnake.Invalidate();
+        }
 
     }
 }

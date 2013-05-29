@@ -17,6 +17,12 @@ namespace Snake.Controllers
         {
             this._snake = new SnakeController(xLength, yLength, pixelLength, snakeColor);
             this._meat = new MeatController(xLength, yLength, pixelLength);
+            initMeat();
+        }
+
+        protected void initMeat()
+        {
+            this._meat.generateMeat(this._snake.getSnakeBody());
         }
 
         public int getTickerTimer()
@@ -38,6 +44,11 @@ namespace Snake.Controllers
             List<Pixel> snakePixels = this._snake.getSnakeBody();
 
             snakePixels.Add(this._meat.refresh(snakePixels, null));
+            if (this._meat.isEaten())
+            {
+                this._snake.eatMeat(this._meat.getEatenValue());
+            }
+
             return snakePixels;
         }
 

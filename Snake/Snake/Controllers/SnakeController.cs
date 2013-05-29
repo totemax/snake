@@ -144,8 +144,6 @@ namespace Snake.Controllers
         /// <summary>
         /// Detects the snake's collision
         /// </summary>
-        /// <param name="maxX">Max x of the screen </param>
-        /// <param name="maxY">Max y of the screen</param>
         /// <returns>Boolean</returns>
         public bool hasColision()
         {
@@ -158,6 +156,23 @@ namespace Snake.Controllers
                 if (px.getX() == snakeHead.getX() && px.getY() == snakeHead.getY() && px.getCount() != snakeHead.getCount()) return true;
             }
             return false;
+        }
+
+        public bool hasCollision(List<Pixel> obstacles)
+        {
+            if (this.hasColision())
+            {
+                return true;
+            }
+            else
+            {
+                Pixel snakeHead = this._snakeBody[_snakeBody.Count() - 1];
+                foreach (Pixel px in obstacles)
+                {
+                    if (px.getX() == snakeHead.getX() && px.getY() == snakeHead.getY() && px.getCount() != snakeHead.getCount()) return true;
+                }
+                return false;
+            }
         }
 
         public void eatMeat(int meatValue)

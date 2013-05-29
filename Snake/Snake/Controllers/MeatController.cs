@@ -22,9 +22,9 @@ namespace Snake.Controllers
         private int _maxX;
         private int _maxY;
         private int _lPixel;
-        private int _meatScore = 100;
-        private int _actualScore = 0;
+        private int _eatenValue = 0;
         private int _minValue = 1;
+        private int _maxValue = 4;
         private Color _initialColor = Color.Red;
         private Color _meatColor = Color.Black;
 
@@ -32,14 +32,14 @@ namespace Snake.Controllers
 
         #region [Builders]
 
-        public MeatController(int maxX, int maxY, int lPixel, int meatValue, int minValue)
+        public MeatController(int maxX, int maxY, int lPixel, int minValue, int maxValue)
         {
             this._random = new Random();
             this._maxX = maxX;
             this._maxY = maxY;
             this._lPixel = lPixel;
-            this._meatScore = meatValue;
             this._minValue = minValue;
+            this._maxValue = maxValue;
         }
 
         public MeatController(int maxX, int maxY, int lPixel)
@@ -72,18 +72,6 @@ namespace Snake.Controllers
         public Pixel getMeatPixel() { return this._meatPixel; }
 
         /// <summary>
-        /// Gets the actual meat value
-        /// </summary>
-        /// <returns>integer</returns>
-        public int getActualValue() { return this._actualScore; }
-
-        /// <summary>
-        /// Sets the actual meat value
-        /// </summary>
-        /// <param name="actualValue">integer with the meat value</param>
-        public void setActualScore(int actualValue) { this._actualScore = actualValue; }
-
-        /// <summary>
         /// Gets the meat value
         /// </summary>
         /// <returns></returns>
@@ -93,7 +81,7 @@ namespace Snake.Controllers
 
         #region [Functions & Methods]
 
-        private void generateMeat(List<Pixel> pixelsOccupied)
+        public void generateMeat(List<Pixel> pixelsOccupied)
         {
             int x = _random.Next(this._maxX);
             int y = _random.Next(this._maxY);
@@ -103,8 +91,8 @@ namespace Snake.Controllers
                 y = _random.Next(this._maxY);
             }
             this._meatPixel = new Pixel(x, y, this._initialColor);
-            this._actualScore = this._meatScore;
-            this._meatValue = _random.Next(1, 4);
+            this._eatenValue = this._meatValue;
+            this._meatValue = _random.Next(this._minValue, this._maxValue);
         }
 
         private bool isPixelOccupied(int x, int y, List<Pixel> pixelsOccupied)
@@ -118,6 +106,7 @@ namespace Snake.Controllers
 
         public Pixel refresh(List<Pixel> pixelSnake, List<Pixel> pixelsObstacle)
         {
+            this._isMeatEaten = false;
             foreach (Pixel snakeBody in pixelSnake)
             {
                 if (snakeBody.getX() == this._meatPixel.getX() && snakeBody.getY() == this._meatPixel.getY())
@@ -157,6 +146,11 @@ namespace Snake.Controllers
         public Boolean isEaten()
         {
             return this._isMeatEaten;
+        }
+
+        public int getEatenValue()
+        {
+            return this._eatenValue;
         }
 
         #endregion
