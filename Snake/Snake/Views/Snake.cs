@@ -19,14 +19,16 @@ namespace Snake.Views
         #region [Constants]
 
             private static String NEW_GAME = "SELECCIONE UN MODO DE JUEGO";
-            private static String PUSH_START = "Pulse espacio para iniciar partida";    
+            private static String PUSH_START = "Pulse espacio para iniciar partida";
+            private static int PIXEL_LENGTH = 13;
+ 
         #endregion
 
 
         #region [Variables]
 
         String _messageToRender = null;
-        int PIXEL_LENGTH = 13;
+
         List<Pixel> _pixelsToRender = null;
         Hashtable _nextDirection = new Hashtable();
         IGameController _gameMode = null;
@@ -78,7 +80,7 @@ namespace Snake.Views
                     foreach (Pixel px in this._pixelsToRender)
                     {
                         Color pxColor = px.getColor();
-                        Rectangle rct = new Rectangle(px.getX(), px.getY(), this.PIXEL_LENGTH, this.PIXEL_LENGTH);
+                        Rectangle rct = new Rectangle(px.getX(), px.getY(), PIXEL_LENGTH, PIXEL_LENGTH);
                         e.Graphics.FillRectangle(new SolidBrush(pxColor), rct);
                     }
                 }
@@ -223,16 +225,6 @@ namespace Snake.Views
             this.Close();
         }
 
-        //Evento que lanza la pantalla de "Acerca de..."
-        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var isTimerStarted = this.timer1.Enabled;
-            if (isTimerStarted) timer1.Stop();
-            About about = new About();
-            about.ShowDialog();
-            if (isTimerStarted) timer1.Start();
-        }
-
         #endregion
 
         #region [Functions & Methods]
@@ -246,6 +238,23 @@ namespace Snake.Views
 
         #endregion
 
+        #region [ Events ]
+
+        /// <summary>
+        /// Evento que se encarga de llamar a la ventana acerca de...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var isTimerStarted = this.timer1.Enabled;
+            if (isTimerStarted) timer1.Stop();
+            About about = new About();
+            about.ShowDialog();
+            if (isTimerStarted) timer1.Start();
+        }
+
+
         private void gameModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.timer1.Stop();
@@ -255,16 +264,16 @@ namespace Snake.Views
             switch (item.Tag.ToString())
             {
                 case "competicion":
-                    this._gameMode = new ChallengeController(this.canvasSnake.Width, this.canvasSnake.Height, this.PIXEL_LENGTH);
+                    this._gameMode = new ChallengeController(this.canvasSnake.Width, this.canvasSnake.Height, PIXEL_LENGTH);
                     break;
                 case "training":
-                    this._gameMode = new TrainingController(this.canvasSnake.Width, this.canvasSnake.Height, this.PIXEL_LENGTH, int.Parse(item.Text));
+                    this._gameMode = new TrainingController(this.canvasSnake.Width, this.canvasSnake.Height, PIXEL_LENGTH, int.Parse(item.Text));
                     break;
                 case "versus_a":
-                    this._gameMode = new VSAController(this.canvasSnake.Width, this.canvasSnake.Height, this.PIXEL_LENGTH);
+                    this._gameMode = new VSAController(this.canvasSnake.Width, this.canvasSnake.Height, PIXEL_LENGTH);
                     break;
                 case "versus_b":
-                    this._gameMode = new VSBController(this.canvasSnake.Width, this.canvasSnake.Height, this.PIXEL_LENGTH);
+                    this._gameMode = new VSBController(this.canvasSnake.Width, this.canvasSnake.Height, PIXEL_LENGTH);
                     break;
             }
 
@@ -272,6 +281,6 @@ namespace Snake.Views
 
             this.canvasSnake.Invalidate();
         }
-
+        #endregion
     }
 }

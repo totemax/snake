@@ -185,7 +185,7 @@ namespace Snake.Controllers
                 Pixel snakeHead = this._snakeBody[_snakeBody.Count() - 1];
                 foreach (Pixel px in obstacles)
                 {
-                    if (px.getX() == snakeHead.getX() && px.getY() == snakeHead.getY() && px.getCount() != snakeHead.getCount()) return true;
+                    if (px.getX() == snakeHead.getX() && px.getY() == snakeHead.getY()) return true;
                 }
             }
             return false;
