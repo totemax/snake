@@ -12,9 +12,15 @@ namespace Snake.Controllers
         protected MeatController _meat;
         protected int _tickTimer = 1000;
         protected static string GAME_OVER = "GAME OVER";
+        protected int _pixelL;
+        protected int _xLength;
+        protected int _yLength;
 
         public GameController(int xLength, int yLength, int pixelLength,System.Drawing.Color snakeColor)
         {
+            this._pixelL = pixelLength;
+            this._xLength = xLength;
+            this._yLength = yLength;
             this._snake = new SnakeController(xLength, yLength, pixelLength, snakeColor);
             this._meat = new MeatController(xLength, yLength, pixelLength);
             initMeat();
@@ -43,18 +49,21 @@ namespace Snake.Controllers
             this._snake.refresh();
             List<Pixel> snakePixels = this._snake.getSnakeBody();
 
-            snakePixels.Add(this._meat.refresh(snakePixels, null));
+            List<Pixel> pixelsToPaint = new List<Pixel>();
+
+            pixelsToPaint.Add(this._meat.refresh(snakePixels, null));
+            pixelsToPaint.AddRange(snakePixels);
             if (this._meat.isEaten())
             {
                 this._snake.eatMeat(this._meat.getEatenValue());
             }
 
-            return snakePixels;
+            return pixelsToPaint;
         }
 
         public string gameResult()
         {
-            if (this._snake.hasColision())
+            if (this._snake.hasCollision())
             {
                 return GAME_OVER;
             }

@@ -4,46 +4,55 @@
   <!ELEMENT tickTimer ANY>
   <!ELEMENT scoreLvl ANY>
   <!ELEMENT board ANY>
+  <!ELEMENT obstacle EMPTY>
   <!ATTLIST level id ID #REQUIRED>
   <!ATTLIST board newBoard CDATA #REQUIRED>
+  <!ATTLIST obstacle x CDATA #REQUIRED>
+  <!ATTLIST obstacle y CDATA #REQUIRED>
+  <!ATTLIST obstacle r CDATA #REQUIRED>
+  <!ATTLIST obstacle g CDATA #REQUIRED>
+  <!ATTLIST obstacle b CDATA #REQUIRED>
 ]>
 <levels>
   <level id="lvl_1">
-    <tickTimer>1000</tickTimer>
+    <tickTimer>300</tickTimer>
     <scoreLvl>10</scoreLvl>
     <board newBoard="true"></board>
   </level>
   <level id="lvl_2">
-    <tickTimer>800</tickTimer>
+    <tickTimer>250</tickTimer>
     <scoreLvl>15</scoreLvl>
     <board newBoard="false"></board>
   </level>
   <level id="lvl_3">
-    <tickTimer>750</tickTimer>
+    <tickTimer>150</tickTimer>
     <scoreLvl>20</scoreLvl>
     <board newBoard="true">
-      <obstacle x="120" y="150" />
+      <obstacle x="4" y="4" r="255" g="215" b="0" />
+      <obstacle x="4" y="5" r="255" g="215" b="0"/>
+      <obstacle x="4" y="6" r="255" g="215" b="0"/>
     </board>
   </level>
   <level id="lvl_4">
-    <tickTimer>700</tickTimer>
+    <tickTimer>100</tickTimer>
     <scoreLvl>25</scoreLvl>
     <board newBoard="false">
-      <obstacle x="120" y="150" />
     </board>
   </level>
   <level id="lvl_5">
-    <tickTimer>650</tickTimer>
+    <tickTimer>75</tickTimer>
     <scoreLvl>30</scoreLvl>
     <board newBoard="true">
-      <obstacle x="120" y="150" />
+      <obstacle x="7" y="5" r="255" g="215" b="0" />
+      <obstacle x="8" y="5" r="255" g="215" b="0"/>
+      <obstacle x="9" y="5" r="255" g="215" b="0"/>
+      <obstacle x="10" y="5" r="255" g="215" b="0"/>
     </board>
   </level>
   <level id="lvl_6">
-    <tickTimer>1000</tickTimer>
+    <tickTimer>50</tickTimer>
     <scoreLvl>35</scoreLvl>
     <board newBoard="true">
-      <obstacle x="120" y="150" />
     </board>
   </level>
 </levels>

@@ -87,6 +87,8 @@ namespace Snake.Views
 
             this._messageToRender = this._gameMode.gameResult();
 
+            this.timer1.Interval = this._gameMode.getTickerTimer();
+
             if (this._messageToRender != null)
             {
                 this.timer1.Stop();

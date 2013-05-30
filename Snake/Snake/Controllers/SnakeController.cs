@@ -41,13 +41,13 @@ namespace Snake.Controllers
             this._xLength = xLength;
             this._yLength = yLength;
 
-            int numPixelsX = xLength % pixelL;
-            int numPixelsY = yLength % pixelL;
+            int numPixelsX = xLength / pixelL;
+            int numPixelsY = yLength / pixelL;
 
             this._pixelL = pixelL;
             this._color = snakeColor;
             this._snakeBody = new List<Pixel>();
-            this._snakeBody.Add(new Pixel((numPixelsX % 2) * pixelL, (numPixelsY % 2) * pixelL, 0, this._color));
+            this._snakeBody.Add(new Pixel((int)(numPixelsX / 2) * pixelL, (int)(numPixelsY / 2) * pixelL, 0, this._color));
         }
 
         #endregion
@@ -145,7 +145,7 @@ namespace Snake.Controllers
         /// Detects the snake's collision
         /// </summary>
         /// <returns>Boolean</returns>
-        public bool hasColision()
+        public bool hasCollision()
         {
             Pixel snakeHead = this._snakeBody[_snakeBody.Count() - 1];
             if (snakeHead.getX() >= this._xLength || snakeHead.getX() < 0 || snakeHead.getY() >= this._yLength || snakeHead.getY() < 0){
@@ -160,19 +160,19 @@ namespace Snake.Controllers
 
         public bool hasCollision(List<Pixel> obstacles)
         {
-            if (this.hasColision())
+            if (this.hasCollision())
             {
                 return true;
             }
-            else
+            else if(obstacles != null)
             {
                 Pixel snakeHead = this._snakeBody[_snakeBody.Count() - 1];
                 foreach (Pixel px in obstacles)
                 {
                     if (px.getX() == snakeHead.getX() && px.getY() == snakeHead.getY() && px.getCount() != snakeHead.getCount()) return true;
                 }
-                return false;
             }
+            return false;
         }
 
         public void eatMeat(int meatValue)

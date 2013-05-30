@@ -83,16 +83,17 @@ namespace Snake.Controllers
 
         public void generateMeat(List<Pixel> pixelsOccupied)
         {
-            int x = _random.Next(this._maxX);
-            int y = _random.Next(this._maxY);
-            while (isPixelOccupied(x, y, pixelsOccupied) || x % _lPixel != 0 || y % _lPixel != 0)
+            int x = _random.Next((int)(this._maxX / _lPixel));
+            int y = _random.Next((int)(this._maxY/ _lPixel));
+            while (isPixelOccupied(x * _lPixel, y * _lPixel, pixelsOccupied))
             {
-                x = _random.Next(this._maxX);
-                y = _random.Next(this._maxY);
+                x = _random.Next((int)(this._maxX / _lPixel));
+                y = _random.Next((int)(this._maxY / _lPixel));
             }
-            this._meatPixel = new Pixel(x, y, this._initialColor);
+            this._meatPixel = new Pixel(x*_lPixel, y*_lPixel, this._initialColor);
             this._eatenValue = this._meatValue;
             this._meatValue = _random.Next(this._minValue, this._maxValue);
+            this._countRefresh = 0;
         }
 
         private bool isPixelOccupied(int x, int y, List<Pixel> pixelsOccupied)
@@ -114,7 +115,7 @@ namespace Snake.Controllers
                     this._isMeatEaten = true;
                 }
             }
-            if (this._isMeatEaten || this._countRefresh > 10)
+            if (this._isMeatEaten || this._countRefresh > 15)
             {
                 if (pixelsObstacle != null)
                 {
@@ -140,6 +141,7 @@ namespace Snake.Controllers
             {
                 this._meatPixel.setColor(this._meatColor);
             }
+            this._countRefresh++;
             return this._meatPixel;
         }
 
