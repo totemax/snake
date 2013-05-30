@@ -7,15 +7,27 @@ using Snake.Models;
 using System.Collections;
 namespace Snake.Controllers
 {
+    /// <summary>
+    /// Game controller for VERSUS A mode
+    /// </summary>
     class VSAController : GameController, IGameController
     {
+        #region [Constants]
+        
         protected static String PLAYER1_WIN = "Player 1 WIN";
         protected static String PLAYER2_WIN = "Player 2 WIN";
 
+        #endregion
+
+        #region [Variables]
         protected SnakeController _snake1;
         protected SnakeController _snake2;
         private static Color SNAKE_1_COLOR = Color.Blue;
         private static Color SNAKE_2_COLOR = Color.Purple;
+
+        #endregion
+
+        #region [Builders]
 
         public VSAController(int maxX, int maxY, int pixelL)
             : base(maxX, maxY, pixelL, SNAKE_1_COLOR)
@@ -26,6 +38,10 @@ namespace Snake.Controllers
             this._snake2 = new SnakeController(maxX, maxY, pixelL, numPixelsX / 4, numPixelsY / 2, SNAKE_2_COLOR);
             this._tickTimer = 150;
         }
+
+        #endregion
+
+        #region [Interface implementations]
 
         public new List<Pixel> refresh(Hashtable direction)
         {
@@ -70,5 +86,7 @@ namespace Snake.Controllers
             }
             return null;
         }
+
+        #endregion
     }
 }

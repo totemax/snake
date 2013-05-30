@@ -1,67 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Snake.Controllers.MeatController">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+  <Class Name="Snake.Controllers.ChallengeController" Collapsed="true">
+    <Position X="4.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACUAAAAIAAIAQQQAACBABAAAAAAoAAAAAAIgAAAAgE=</HashCode>
+      <HashCode>AIAAAEAAAAAAIABAAAAAIBAECAAAAAAAAAAIgBAABAA=</HashCode>
+      <FileName>Controllers\ChallengeController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Snake.Controllers.VSBController" Collapsed="true">
+    <Position X="6.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\VSBController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Snake.Controllers.GameController" Collapsed="true">
+    <Position X="5.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AMAAQEAQIAAAIAACAggIAIAAAAAAQQAAAAAAABBAAAA=</HashCode>
+      <FileName>Controllers\GameController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Snake.Controllers.MeatController" Collapsed="true">
+    <Position X="10.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAUEEAAKAAABQQQAACCAAAAAAAAgCAAAAAIACAAAgE=</HashCode>
       <FileName>Controllers\MeatController.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Pixel" />
-    </ShowAsAssociation>
   </Class>
-  <Class Name="Snake.Controllers.SnakeController">
-    <Position X="3" Y="0.5" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="Snake.Controllers.SnakeController.Directions" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Controllers\SnakeController.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
+  <Class Name="Snake.Controllers.SnakeController" Collapsed="true">
+    <Position X="12.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACAQEAAQAAMAAAAAAABAAAAAAAAgIAABAAIBAEAAAA=</HashCode>
+      <HashCode>AEAAQEAAAAAMAAAAAAAIAAAAAAAEgIAABAAIBAEAEAA=</HashCode>
       <FileName>Controllers\SnakeController.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Pixel" />
-    </ShowAsAssociation>
   </Class>
-  <Class Name="Snake.Models.Pixel">
-    <Position X="5" Y="0.5" Width="1.5" />
+  <Class Name="Snake.Controllers.TrainingController" Collapsed="true">
+    <Position X="4.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TrainingController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Snake.Controllers.VSAController" Collapsed="true">
+    <Position X="6.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAACEAAAAAAAAAMDAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Controllers\VSAController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Snake.Models.Pixel" Collapsed="true">
+    <Position X="12.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAIAAQIAAAAAAAGAAAAAAAAAAAAAACAgGAMAAA=</HashCode>
       <FileName>Models\Pixel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Snake.Views.About">
-    <Position X="8.75" Y="0.5" Width="1.5" />
+  <Class Name="Snake.Program" Collapsed="true">
+    <Position X="9" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake.Views.Snake" Collapsed="true">
+    <Position X="10.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gUQAhIAABCAgABAKSACCBTACAQAAIAGADABAdAAAAAA=</HashCode>
+      <FileName>Views\Snake.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake.Views.About" Collapsed="true">
+    <Position X="9" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAABAAAACAAAACBAAAAAABIAAAAQBAAAA=</HashCode>
       <FileName>Views\About.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Snake.Views.Snake" Collapsed="true">
-    <Position X="6.75" Y="0.5" Width="1.5" />
+  <Interface Name="Snake.Controllers.IGameController" Collapsed="true">
+    <Position X="9" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IUQABAAQBiEkIBkKAACKJJAiAQIAIAGAgAQIZAAARAA=</HashCode>
-      <FileName>Views\Snake.cs</FileName>
+      <HashCode>AIAAAEAAIAAAAAAAAgAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Controllers\IGameController.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="About" />
-      <Property Name="SnakeController" />
-      <Property Name="MeatController" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="Snake.Program">
-    <Position X="8.75" Y="4.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Snake" />
-    </ShowAsAssociation>
-  </Class>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

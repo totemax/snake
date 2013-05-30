@@ -6,10 +6,9 @@ using System.Drawing;
 
 namespace Snake.Models
 {
-    /*
-     * Controller for game pixels 
-     * Authors: jjorge & arodrigo
-     */
+    /// <summary>
+    /// Model for pixels
+    /// </summary>
     public class Pixel
     {
         #region [ Variables ]

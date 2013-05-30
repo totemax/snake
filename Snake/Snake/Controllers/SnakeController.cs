@@ -12,6 +12,9 @@ namespace Snake.Controllers
     /// </summary>
     public class SnakeController
     {
+        /// <summary>
+        /// Directions of snake
+        /// </summary>
         public enum Directions
         {
             UP,
@@ -67,17 +70,6 @@ namespace Snake.Controllers
         }
 
         #endregion
-
-        public Snake.Models.Pixel Pixel
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
 
         #region [ Getters & Setters ]
 
@@ -174,6 +166,11 @@ namespace Snake.Controllers
             return false;
         }
 
+        /// <summary>
+        /// Detects the snake's collision
+        /// </summary>
+        /// <param name="obstacles">Obstacles in the screen</param>
+        /// <returns>Boolean</returns>
         public bool hasCollision(List<Pixel> obstacles)
         {
             if (this.hasCollision())
@@ -191,6 +188,10 @@ namespace Snake.Controllers
             return false;
         }
 
+        /// <summary>
+        /// Adds the meat value to Snake
+        /// </summary>
+        /// <param name="meatValue"></param>
         public void eatMeat(int meatValue)
         {
             this._length += meatValue;

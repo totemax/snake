@@ -6,17 +6,31 @@ using Snake.Models;
 using System.Collections;
 namespace Snake.Controllers
 {
+    /// <summary>
+    /// Abstract class that implements the inital functions for Game Controllers
+    /// </summary>
     public abstract class GameController :IGameController
     {
-        protected SnakeController _snake;
-        protected MeatController _meat;
-        protected int _tickTimer = 1000;
+        #region [Constants]
+
         protected static string GAME_OVER = "GAME OVER";
         public static string FIRST_PLAYER = "FIRST";
         public static string SECOND_PLAYER = "SECOND";
+
+        #endregion
+
+        #region [Variables]
+
+        protected SnakeController _snake;
+        protected MeatController _meat;
+        protected int _tickTimer = 1000;
         protected int _pixelL;
         protected int _xLength;
         protected int _yLength;
+
+        #endregion
+
+        #region [Builders]
 
         public GameController(int xLength, int yLength, int pixelLength,System.Drawing.Color snakeColor)
         {
@@ -28,10 +42,21 @@ namespace Snake.Controllers
             initMeat();
         }
 
+        #endregion
+
+        #region [ Methods ]
+
+        /// <summary>
+        /// Init the meat controller
+        /// </summary>
         protected void initMeat()
         {
             this._meat.generateMeat(this._snake.getSnakeBody());
         }
+
+        #endregion
+
+        #region [ Interface implementations ]
 
         public int getTickerTimer()
         {
@@ -82,5 +107,6 @@ namespace Snake.Controllers
             return this._meat.getMeatValue();
         }
 
+        #endregion
     }
 }

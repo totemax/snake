@@ -5,13 +5,22 @@ using System.Text;
 
 namespace Snake.Controllers
 {
+    /// <summary>
+    /// Controller for VERSUS B mode
+    /// </summary>
     class VSBController: VSAController, IGameController
     {
+        #region [Builders]
+
         public VSBController(int maxX, int maxY, int pixelL)
             : base(maxX, maxY, pixelL)
         {
 
         }
+
+        #endregion
+
+        #region [Interface implementations]
 
         public new String gameResult()
         {
@@ -25,5 +34,7 @@ namespace Snake.Controllers
             }
             return null;
         }
+
+        #endregion
     }
 }

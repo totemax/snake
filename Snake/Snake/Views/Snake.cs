@@ -24,11 +24,9 @@ namespace Snake.Views
  
         #endregion
 
-
         #region [Variables]
 
         String _messageToRender = null;
-
         List<Pixel> _pixelsToRender = null;
         Hashtable _nextDirection = new Hashtable();
         IGameController _gameMode = null;
@@ -44,84 +42,83 @@ namespace Snake.Views
 
         #endregion
 
-        public About About
+        #region [Functions & Methods]
+
+        /// <summary>
+        /// Funcion que se encarga de pintar los mensajes por pantalla
+        /// </summary>
+        /// <param name="message">Mensaje a pintar</param>
+        private void drawText(String message)
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            this.lblMessages.Visible = true;
+            lblMessages.Text = message;
+        }        
+
+        #endregion
+
+        #region [ Events ]
+
+        /// <summary>
+        /// Evento que se encarga de llamar a la ventana acerca de...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var isTimerStarted = this.timer1.Enabled;
+            if (isTimerStarted) timer1.Stop();
+            About about = new About();
+            about.ShowDialog();
+            if (isTimerStarted) timer1.Start();
         }
 
-        #region [Events]
-
-        private void Snake_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Evento que se encarga de los botones de los modos de juego
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gameModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this._messageToRender = NEW_GAME;
+            this.timer1.Stop();
+            ToolStripDropDownItem item = (ToolStripDropDownItem)sender;
+            this._pixelsToRender = null;
+
+            switch (item.Tag.ToString())
+            {
+                case "competicion":
+                    this._gameMode = new ChallengeController(this.canvasSnake.Width, this.canvasSnake.Height, PIXEL_LENGTH);
+                    break;
+                case "training":
+                    this._gameMode = new TrainingController(this.canvasSnake.Width, this.canvasSnake.Height, PIXEL_LENGTH, int.Parse(item.Text));
+                    break;
+                case "versus_a":
+                    this._gameMode = new VSAController(this.canvasSnake.Width, this.canvasSnake.Height, PIXEL_LENGTH);
+                    break;
+                case "versus_b":
+                    this._gameMode = new VSBController(this.canvasSnake.Width, this.canvasSnake.Height, PIXEL_LENGTH);
+                    break;
+            }
+
+            this._messageToRender = PUSH_START;
+
             this.canvasSnake.Invalidate();
         }
 
-        // Evento encargado de realizar el pintado del canvas
-        private void canvasSnake_Paint(object sender, PaintEventArgs e)
+        /// <summary>
+        /// Evento que controla el boton salir
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this._messageToRender != null)
-            {
-                this.drawText(this._messageToRender);
-                this._messageToRender = null;
-            }
-            else
-            {
-                this.lblMessages.Text = "";
-                this.lblMessages.Visible = false;
-                if (this._pixelsToRender != null)
-                {
-                    foreach (Pixel px in this._pixelsToRender)
-                    {
-                        Color pxColor = px.getColor();
-                        Rectangle rct = new Rectangle(px.getX(), px.getY(), PIXEL_LENGTH, PIXEL_LENGTH);
-                        e.Graphics.FillRectangle(new SolidBrush(pxColor), rct);
-                    }
-                }
-            }
+            this.Close();
         }
 
-        //Evento que se lanza cada vez que hay un tick en el timer.
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
-            List<Pixel> pixelsRef = this._gameMode.refresh(this._nextDirection);
-
-            this._messageToRender = this._gameMode.gameResult();
-
-            this.timer1.Interval = this._gameMode.getTickerTimer();
-
-            if (this._messageToRender != null)
-            {
-                this.timer1.Stop();
-            }
-            else
-            {
-                this._pixelsToRender = pixelsRef;
-            }
-
-            if (this._gameMode.getLvl() != null)
-            {
-                this.lvlLbl.Text = this._gameMode.getLvl();
-            }
-            else
-            {
-                this.lvlLbl.Text = "-";
-            }
-
-            this.lblMeat.Text = this._gameMode.getMeatValue().ToString();
-
-            this._nextDirection.Clear();
-            canvasSnake.Invalidate();
-        }
-
-        //Evento que se encarga de parsear la entrada por teclado
+        /// <summary>
+        /// Evento que se encarga de parsear la entrada por teclado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Snake_KeyDown_1(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -219,67 +216,81 @@ namespace Snake.Views
             }
         }
 
-        //Evento que controla el botón salir
-        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        #endregion
-
-        #region [Functions & Methods]
-
-        // Funcion que se encarga de pintar el letrero de "Game Over" cuando perdemos
-        private void drawText(String message)
-        {
-            this.lblMessages.Visible = true;
-            lblMessages.Text = message;
-        }        
-
-        #endregion
-
-        #region [ Events ]
-
         /// <summary>
-        /// Evento que se encarga de llamar a la ventana acerca de...
+        /// Evento que se encarga de refrescar todo cuando hay un tick en el timer
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            var isTimerStarted = this.timer1.Enabled;
-            if (isTimerStarted) timer1.Stop();
-            About about = new About();
-            about.ShowDialog();
-            if (isTimerStarted) timer1.Start();
-        }
 
+            List<Pixel> pixelsRef = this._gameMode.refresh(this._nextDirection);
 
-        private void gameModeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.timer1.Stop();
-            ToolStripDropDownItem item = (ToolStripDropDownItem)sender;
-            this._pixelsToRender = null;
+            this._messageToRender = this._gameMode.gameResult();
 
-            switch (item.Tag.ToString())
+            this.timer1.Interval = this._gameMode.getTickerTimer();
+
+            if (this._messageToRender != null)
             {
-                case "competicion":
-                    this._gameMode = new ChallengeController(this.canvasSnake.Width, this.canvasSnake.Height, PIXEL_LENGTH);
-                    break;
-                case "training":
-                    this._gameMode = new TrainingController(this.canvasSnake.Width, this.canvasSnake.Height, PIXEL_LENGTH, int.Parse(item.Text));
-                    break;
-                case "versus_a":
-                    this._gameMode = new VSAController(this.canvasSnake.Width, this.canvasSnake.Height, PIXEL_LENGTH);
-                    break;
-                case "versus_b":
-                    this._gameMode = new VSBController(this.canvasSnake.Width, this.canvasSnake.Height, PIXEL_LENGTH);
-                    break;
+                this.timer1.Stop();
+            }
+            else
+            {
+                this._pixelsToRender = pixelsRef;
             }
 
-            this._messageToRender = PUSH_START;
+            if (this._gameMode.getLvl() != null)
+            {
+                this.lvlLbl.Text = this._gameMode.getLvl();
+            }
+            else
+            {
+                this.lvlLbl.Text = "-";
+            }
 
+            this.lblMeat.Text = this._gameMode.getMeatValue().ToString();
+
+            this._nextDirection.Clear();
+            canvasSnake.Invalidate();
+        }
+
+        /// <summary>
+        /// Evento de inicio del formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Snake_Load(object sender, EventArgs e)
+        {
+            this._messageToRender = NEW_GAME;
             this.canvasSnake.Invalidate();
+        }
+
+        /// <summary>
+        /// Evento que se encarga de realizar el pintado del canvas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void canvasSnake_Paint(object sender, PaintEventArgs e)
+        {
+            if (this._messageToRender != null)
+            {
+                this.drawText(this._messageToRender);
+                this._messageToRender = null;
+            }
+            else
+            {
+                this.lblMessages.Text = "";
+                this.lblMessages.Visible = false;
+                if (this._pixelsToRender != null)
+                {
+                    foreach (Pixel px in this._pixelsToRender)
+                    {
+                        Color pxColor = px.getColor();
+                        Rectangle rct = new Rectangle(px.getX(), px.getY(), PIXEL_LENGTH, PIXEL_LENGTH);
+                        e.Graphics.FillRectangle(new SolidBrush(pxColor), rct);
+                    }
+                }
+            }
         }
         #endregion
     }

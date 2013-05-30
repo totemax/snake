@@ -8,17 +8,29 @@ using System.Collections;
 namespace Snake.Controllers
 {
 
+    /// <summary>
+    /// Controller for the CHALLENGE mode
+    /// </summary>
     class ChallengeController : GameController, IGameController
     {
+        #region [ Constants ]
+
         private static String LVL_PREFIX = "lvl_";
         private static String WIN = "YOU WIN!";
 
-        private XmlDocument _lvlsDoc = null;
+        #endregion
 
+        #region [ Variables ]
+
+        private XmlDocument _lvlsDoc = null;
         protected int _lvlNum = 1;
         private int _scoreLvl = 10;
         protected List<Pixel> _obstacles = null;
         private Boolean _isWinner = false;
+
+        #endregion
+
+        #region [ Builders ]
 
         public ChallengeController(int maxX, int maxY, int pixelL)
             : base(maxX, maxY, pixelL, System.Drawing.Color.Black)
@@ -26,10 +38,18 @@ namespace Snake.Controllers
             this.loadLvl();
         }
 
+        #endregion
+
+        #region [Abstract reimplimentations]
+
         private new void initMeat()
         {
              this._meat.generateMeat(this._snake.getSnakeBody().Concat(this._obstacles).ToList());
         }
+
+        #endregion
+
+        #region [Interfaz implementations]
 
         public new List<Pixel> refresh(Hashtable direction)
         {
@@ -120,6 +140,8 @@ namespace Snake.Controllers
                 }
             }
         }
+
+        #endregion
 
     }
 }

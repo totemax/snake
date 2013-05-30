@@ -52,17 +52,6 @@ namespace Snake.Controllers
 
         #endregion
 
-        public Snake.Models.Pixel Pixel
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
         #region [Getters & Setters]
 
         /// <summary>
@@ -81,6 +70,10 @@ namespace Snake.Controllers
 
         #region [Functions & Methods]
 
+        /// <summary>
+        /// Generates the meat
+        /// </summary>
+        /// <param name="pixelsOccupied">pixels occupied in the screen</param>
         public void generateMeat(List<Pixel> pixelsOccupied)
         {
             int x = _random.Next((int)(this._maxX / _lPixel));
@@ -95,6 +88,13 @@ namespace Snake.Controllers
             this._countRefresh = 0;
         }
 
+        /// <summary>
+        /// Comprobates if the pixel is occupied in the screen
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="pixelsOccupied"></param>
+        /// <returns></returns>
         private bool isPixelOccupied(int x, int y, List<Pixel> pixelsOccupied)
         {
             foreach (Pixel px in pixelsOccupied)
@@ -104,6 +104,12 @@ namespace Snake.Controllers
             return false;
         }
 
+        /// <summary>
+        /// Refresh the meat state
+        /// </summary>
+        /// <param name="pixelSnake"></param>
+        /// <param name="pixelsObstacle"></param>
+        /// <returns></returns>
         public Pixel refresh(List<Pixel> pixelSnake, List<Pixel> pixelsObstacle)
         {
             this._isMeatEaten = isEaten(pixelSnake);
@@ -138,16 +144,29 @@ namespace Snake.Controllers
             return this._meatPixel;
         }
 
+        /// <summary>
+        /// Comprobate if the meat is eaten
+        /// </summary>
+        /// <returns></returns>
         public Boolean isEaten()
         {
             return this._isMeatEaten;
         }
 
+        /// <summary>
+        /// Returns the eated meat value
+        /// </summary>
+        /// <returns></returns>
         public int getEatenValue()
         {
             return this._eatenValue;
         }
 
+        /// <summary>
+        /// Comprobate if the meat is eaten
+        /// </summary>
+        /// <param name="snake"></param>
+        /// <returns></returns>
         public bool isEaten(List<Pixel> snake)
         {
             foreach (Pixel snakeBody in snake)
