@@ -22,9 +22,9 @@ namespace Snake.Controllers
         {
             int numPixelsX = maxX / pixelL;
             int numPixelsY = maxY / pixelL;
-            this._snake2 = this._snake;
-            this._snake1 = new SnakeController(maxX, maxY, pixelL, numPixelsX / 4, numPixelsY / 2, SNAKE_2_COLOR);
-            this._tickTimer = 150;
+            this._snake1 = this._snake;
+            this._snake2 = new SnakeController(maxX, maxY, pixelL, numPixelsX / 4, numPixelsY / 2, SNAKE_2_COLOR);
+            this._tickTimer = 300;
         }
 
         public new List<Pixel> refresh(Hashtable direction)
@@ -62,11 +62,11 @@ namespace Snake.Controllers
         {
             if (_snake1.hasCollision())
             {
-                return PLAYER2_WIN;
+                return PLAYER1_WIN;
             }
             else if (_snake2.hasCollision())
             {
-                return PLAYER1_WIN;
+                return PLAYER2_WIN;
             }
             return null;
         }

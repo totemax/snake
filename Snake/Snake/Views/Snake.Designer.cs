@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Snake));
             this.canvasSnake = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lblScore = new System.Windows.Forms.Label();
-            this.score = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.juegoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +49,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblMeat = new System.Windows.Forms.Label();
             this.versusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versusBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lvlLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvasSnake)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -70,24 +71,6 @@
             // 
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // lblScore
-            // 
-            this.lblScore.AutoSize = true;
-            this.lblScore.Location = new System.Drawing.Point(195, 26);
-            this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(38, 13);
-            this.lblScore.TabIndex = 1;
-            this.lblScore.Text = "Score:";
-            // 
-            // score
-            // 
-            this.score.AutoSize = true;
-            this.score.Location = new System.Drawing.Point(239, 27);
-            this.score.Name = "score";
-            this.score.Size = new System.Drawing.Size(13, 13);
-            this.score.TabIndex = 2;
-            this.score.Text = "0";
             // 
             // menuStrip1
             // 
@@ -114,7 +97,8 @@
             this.nuevoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.competiciónIndividualToolStripMenuItem,
             this.entrenamientoToolStripMenuItem,
-            this.versusToolStripMenuItem});
+            this.versusToolStripMenuItem,
+            this.versusBToolStripMenuItem});
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
             this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
@@ -214,7 +198,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 26);
+            this.label1.Location = new System.Drawing.Point(9, 316);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 4;
@@ -223,7 +207,7 @@
             // lblMeat
             // 
             this.lblMeat.AutoSize = true;
-            this.lblMeat.Location = new System.Drawing.Point(80, 26);
+            this.lblMeat.Location = new System.Drawing.Point(89, 316);
             this.lblMeat.Name = "lblMeat";
             this.lblMeat.Size = new System.Drawing.Size(13, 13);
             this.lblMeat.TabIndex = 5;
@@ -237,15 +221,41 @@
             this.versusToolStripMenuItem.Text = "Versus A";
             this.versusToolStripMenuItem.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
             // 
+            // versusBToolStripMenuItem
+            // 
+            this.versusBToolStripMenuItem.Name = "versusBToolStripMenuItem";
+            this.versusBToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.versusBToolStripMenuItem.Tag = "versus_b";
+            this.versusBToolStripMenuItem.Text = "Versus B";
+            this.versusBToolStripMenuItem.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(122, 316);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(34, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Nivel:";
+            // 
+            // lvlLbl
+            // 
+            this.lvlLbl.AutoSize = true;
+            this.lvlLbl.Location = new System.Drawing.Point(162, 316);
+            this.lvlLbl.Name = "lvlLbl";
+            this.lvlLbl.Size = new System.Drawing.Size(10, 13);
+            this.lvlLbl.TabIndex = 7;
+            this.lvlLbl.Text = "-";
+            // 
             // Snake
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 316);
+            this.ClientSize = new System.Drawing.Size(284, 338);
+            this.Controls.Add(this.lvlLbl);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblMeat);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.score);
-            this.Controls.Add(this.lblScore);
             this.Controls.Add(this.canvasSnake);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -268,8 +278,6 @@
 
         private System.Windows.Forms.PictureBox canvasSnake;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label lblScore;
-        private System.Windows.Forms.Label score;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem juegoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
@@ -287,5 +295,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem versusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem versusBToolStripMenuItem;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lvlLbl;
     }
 }

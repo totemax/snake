@@ -16,5 +16,9 @@ namespace Snake.Controllers
 
         int getTickerTimer();
 
+        String getLvl();
+
+        int getMeatValue();
+
     }
 }

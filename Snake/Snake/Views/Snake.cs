@@ -18,8 +18,8 @@ namespace Snake.Views
     {
         #region [Constants]
 
-            private static String NEW_GAME = "SELECCIONE UN MODO DE JUEGO PARA INICIAR PARTIDA";
-            private static String PUSH_START = "Pulse espacio para iniciar la partida";    
+            private static String NEW_GAME = "SELECCIONE UN MODO DE JUEGO";
+            private static String PUSH_START = "Pulse espacio para iniciar partida";    
         #endregion
 
 
@@ -64,11 +64,6 @@ namespace Snake.Views
         // Evento encargado de realizar el pintado del canvas
         private void canvasSnake_Paint(object sender, PaintEventArgs e)
         {
-            if (this._messageToRender != null)
-            {
-                this.drawText(this._messageToRender, e);
-                this._messageToRender = null;
-            }
             if(this._pixelsToRender != null)
             {
                 foreach (Pixel px in this._pixelsToRender)
@@ -78,12 +73,18 @@ namespace Snake.Views
                     e.Graphics.FillRectangle(new SolidBrush(pxColor), rct);
                 }
             }
+            if (this._messageToRender != null)
+            {
+                this.drawText(this._messageToRender, e);
+                this._messageToRender = null;
+            }
         }
 
         //Evento que se lanza cada vez que hay un tick en el timer.
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this._pixelsToRender = this._gameMode.refresh(this._nextDirection);
+
+            List<Pixel> pixelsRef = this._gameMode.refresh(this._nextDirection);
 
             this._messageToRender = this._gameMode.gameResult();
 
@@ -93,6 +94,21 @@ namespace Snake.Views
             {
                 this.timer1.Stop();
             }
+            else
+            {
+                this._pixelsToRender = pixelsRef;
+            }
+
+            if (this._gameMode.getLvl() != null)
+            {
+                this.lvlLbl.Text = this._gameMode.getLvl();
+            }
+            else
+            {
+                this.lvlLbl.Text = "-";
+            }
+
+            this.lblMeat.Text = this._gameMode.getMeatValue().ToString();
 
             this._nextDirection.Clear();
             canvasSnake.Invalidate();
@@ -218,17 +234,8 @@ namespace Snake.Views
         // Funcion que se encarga de pintar el letrero de "Game Over" cuando perdemos
         private void drawText(String message, PaintEventArgs e)
         {
-            e.Graphics.DrawString(message, new Font("Impact", 20), Brushes.Black, new Point(70, 130));
+            e.Graphics.DrawString(message, new Font("Impact", 12), Brushes.Red, new Point(this.canvasSnake.Width / 10, this.canvasSnake.Height / 3));
         }        
-
-
-        //Funcion de control de la puntuacion
-        private void incrementScore(int increment)
-        {
-            int actualScore = int.Parse(score.Text);
-            actualScore += increment;
-            score.Text = actualScore.ToString();
-        }
 
         #endregion
 
@@ -248,6 +255,9 @@ namespace Snake.Views
                     break;
                 case "versus_a":
                     this._gameMode = new VSAController(this.canvasSnake.Width, this.canvasSnake.Height, this.PIXEL_LENGTH);
+                    break;
+                case "versus_b":
+                    this._gameMode = new VSBController(this.canvasSnake.Width, this.canvasSnake.Height, this.PIXEL_LENGTH);
                     break;
             }
 

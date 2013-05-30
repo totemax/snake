@@ -55,6 +55,11 @@ namespace Snake.Controllers
             return null;
         }
 
+        public new string getLvl()
+        {
+            return this._lvlNum.ToString();
+        }
+
         protected void loadLvl()
         {
             if (this._lvlsDoc == null)

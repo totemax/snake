@@ -72,5 +72,15 @@ namespace Snake.Controllers
             else return null;
         }
 
+        public string getLvl()
+        {
+            return null;
+        }
+
+        public int getMeatValue()
+        {
+            return this._meat.getMeatValue();
+        }
+
     }
 }
