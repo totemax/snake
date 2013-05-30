@@ -24,7 +24,7 @@ namespace Snake.Controllers
             int numPixelsY = maxY / pixelL;
             this._snake1 = this._snake;
             this._snake2 = new SnakeController(maxX, maxY, pixelL, numPixelsX / 4, numPixelsY / 2, SNAKE_2_COLOR);
-            this._tickTimer = 300;
+            this._tickTimer = 150;
         }
 
         public new List<Pixel> refresh(Hashtable direction)
