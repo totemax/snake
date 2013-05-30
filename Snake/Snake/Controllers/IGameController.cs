@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Snake.Models;
+using System.Collections;
 
 namespace Snake.Controllers
 {
@@ -11,9 +12,7 @@ namespace Snake.Controllers
 
         String gameResult();
 
-        List<Pixel> refresh(SnakeController.Directions direction);
-
-        Boolean isLevelChanged();
+        List<Pixel> refresh(Hashtable direction);
 
         int getTickerTimer();
 

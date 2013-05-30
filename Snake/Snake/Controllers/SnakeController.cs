@@ -17,8 +17,7 @@ namespace Snake.Controllers
             UP,
             DOWN,
             LEFT,
-            RIGHT,
-            NO_KEY
+            RIGHT
         }
 
         #region [ Variables ]
@@ -48,6 +47,23 @@ namespace Snake.Controllers
             this._color = snakeColor;
             this._snakeBody = new List<Pixel>();
             this._snakeBody.Add(new Pixel((int)(numPixelsX / 2) * pixelL, (int)(numPixelsY / 2) * pixelL, 0, this._color));
+        }
+
+        public SnakeController(int xLength, int yLength, int pixelL, int initPixelX, int initPixelY, Color snakeColor)
+        {
+            this._xLength = xLength;
+            this._yLength = yLength;
+
+            int numPixelsX = xLength / pixelL;
+            int numPixelsY = yLength / pixelL;
+
+            this._pixelL = pixelL;
+            this._color = snakeColor;
+
+            if (initPixelX >= 0 && initPixelX <= numPixelsX && initPixelY >= 0 && initPixelY <= numPixelsY) {
+                this._snakeBody = new List<Pixel>();
+                this._snakeBody.Add(new Pixel(initPixelX * pixelL, initPixelY * pixelL, 0, this._color));
+            }
         }
 
         #endregion
@@ -83,7 +99,7 @@ namespace Snake.Controllers
         /// <param name="direction">The direction input</param>
         public void setDirection(Directions direction)
         {
-            if (!isOpositteDirection(direction) && !direction.Equals(Directions.NO_KEY)) this._direction = direction;
+            if (!isOpositteDirection(direction)) this._direction = direction;
         }
 
         #endregion 

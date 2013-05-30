@@ -10,7 +10,7 @@ using Snake.Models;
 using Snake.Controllers;
 using System.Media;
 using System.IO;
-using System.Reflection;
+using System.Collections;
 
 namespace Snake.Views
 {
@@ -28,7 +28,7 @@ namespace Snake.Views
         String _messageToRender = null;
         int PIXEL_LENGTH = 13;
         List<Pixel> _pixelsToRender = null;
-        SnakeController.Directions _nextDirection = SnakeController.Directions.NO_KEY;
+        Hashtable _nextDirection = new Hashtable();
         IGameController _gameMode = null;
 
         #endregion
@@ -93,6 +93,8 @@ namespace Snake.Views
             {
                 this.timer1.Stop();
             }
+
+            this._nextDirection.Clear();
             canvasSnake.Invalidate();
         }
 
@@ -102,16 +104,84 @@ namespace Snake.Views
             switch (e.KeyCode)
             {
                 case Keys.Down:
-                    this._nextDirection = SnakeController.Directions.DOWN;
+                    if (this._nextDirection.ContainsKey(GameController.FIRST_PLAYER))
+                    {
+                        this._nextDirection[GameController.FIRST_PLAYER] = SnakeController.Directions.DOWN;
+                    }
+                    else
+                    {
+                        this._nextDirection.Add(GameController.FIRST_PLAYER, SnakeController.Directions.DOWN);
+                    }
                     break;
                 case Keys.Up:
-                    this._nextDirection = SnakeController.Directions.UP;
+                    if (this._nextDirection.ContainsKey(GameController.FIRST_PLAYER))
+                    {
+                        this._nextDirection[GameController.FIRST_PLAYER] = SnakeController.Directions.UP;
+                    }
+                    else
+                    {
+                        this._nextDirection.Add(GameController.FIRST_PLAYER, SnakeController.Directions.UP);
+                    }
                     break;
                 case Keys.Left:
-                    this._nextDirection = SnakeController.Directions.LEFT;
+                    if (this._nextDirection.ContainsKey(GameController.FIRST_PLAYER))
+                    {
+                        this._nextDirection[GameController.FIRST_PLAYER] = SnakeController.Directions.LEFT;
+                    }
+                    else
+                    {
+                        this._nextDirection.Add(GameController.FIRST_PLAYER, SnakeController.Directions.LEFT);
+                    }
                     break;
                 case Keys.Right:
-                    this._nextDirection = SnakeController.Directions.RIGHT;
+                    if (this._nextDirection.ContainsKey(GameController.FIRST_PLAYER))
+                    {
+                        this._nextDirection[GameController.FIRST_PLAYER] = SnakeController.Directions.RIGHT;
+                    }
+                    else
+                    {
+                        this._nextDirection.Add(GameController.FIRST_PLAYER, SnakeController.Directions.RIGHT);
+                    }
+                    break;
+                case Keys.W:
+                    if (this._nextDirection.ContainsKey(GameController.SECOND_PLAYER))
+                    {
+                        this._nextDirection[GameController.SECOND_PLAYER] = SnakeController.Directions.UP;
+                    }
+                    else
+                    {
+                        this._nextDirection.Add(GameController.SECOND_PLAYER, SnakeController.Directions.UP);
+                    }
+                    break;
+                case Keys.S:
+                    if (this._nextDirection.ContainsKey(GameController.SECOND_PLAYER))
+                    {
+                        this._nextDirection[GameController.SECOND_PLAYER] = SnakeController.Directions.DOWN;
+                    }
+                    else
+                    {
+                        this._nextDirection.Add(GameController.SECOND_PLAYER, SnakeController.Directions.DOWN);
+                    }
+                    break;
+                case Keys.A:
+                    if (this._nextDirection.ContainsKey(GameController.SECOND_PLAYER))
+                    {
+                        this._nextDirection[GameController.SECOND_PLAYER] = SnakeController.Directions.LEFT;
+                    }
+                    else
+                    {
+                        this._nextDirection.Add(GameController.SECOND_PLAYER, SnakeController.Directions.LEFT);
+                    }
+                    break;
+                case Keys.D:
+                    if (this._nextDirection.ContainsKey(GameController.SECOND_PLAYER))
+                    {
+                        this._nextDirection[GameController.SECOND_PLAYER] = SnakeController.Directions.RIGHT;
+                    }
+                    else
+                    {
+                        this._nextDirection.Add(GameController.SECOND_PLAYER, SnakeController.Directions.RIGHT);
+                    }
                     break;
                 case Keys.Space:
                     if (timer1.Enabled)
@@ -172,6 +242,12 @@ namespace Snake.Views
             {
                 case "competicion":
                     this._gameMode = new ChallengeController(this.canvasSnake.Width, this.canvasSnake.Height, this.PIXEL_LENGTH);
+                    break;
+                case "training":
+                    this._gameMode = new TrainingController(this.canvasSnake.Width, this.canvasSnake.Height, this.PIXEL_LENGTH, int.Parse(item.Text));
+                    break;
+                case "versus_a":
+                    this._gameMode = new VSAController(this.canvasSnake.Width, this.canvasSnake.Height, this.PIXEL_LENGTH);
                     break;
             }
 

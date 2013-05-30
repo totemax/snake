@@ -38,11 +38,19 @@
             this.juegoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.competiciónIndividualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.entrenamientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMeat = new System.Windows.Forms.Label();
+            this.versusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.canvasSnake)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -104,7 +112,9 @@
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.competiciónIndividualToolStripMenuItem});
+            this.competiciónIndividualToolStripMenuItem,
+            this.entrenamientoToolStripMenuItem,
+            this.versusToolStripMenuItem});
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
             this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
@@ -116,6 +126,67 @@
             this.competiciónIndividualToolStripMenuItem.Tag = "competicion";
             this.competiciónIndividualToolStripMenuItem.Text = "Competición individual";
             this.competiciónIndividualToolStripMenuItem.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
+            // 
+            // entrenamientoToolStripMenuItem
+            // 
+            this.entrenamientoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem6,
+            this.toolStripMenuItem7});
+            this.entrenamientoToolStripMenuItem.Name = "entrenamientoToolStripMenuItem";
+            this.entrenamientoToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.entrenamientoToolStripMenuItem.Text = "Entrenamiento";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem2.Tag = "training";
+            this.toolStripMenuItem2.Text = "1";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem3.Tag = "training";
+            this.toolStripMenuItem3.Text = "2";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem4.Tag = "training";
+            this.toolStripMenuItem4.Text = "3";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem5.Tag = "training";
+            this.toolStripMenuItem5.Text = "4";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem6.Tag = "training";
+            this.toolStripMenuItem6.Text = "5";
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem7.Tag = "training";
+            this.toolStripMenuItem7.Text = "6";
+            this.toolStripMenuItem7.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
@@ -157,6 +228,14 @@
             this.lblMeat.Size = new System.Drawing.Size(13, 13);
             this.lblMeat.TabIndex = 5;
             this.lblMeat.Text = "0";
+            // 
+            // versusToolStripMenuItem
+            // 
+            this.versusToolStripMenuItem.Name = "versusToolStripMenuItem";
+            this.versusToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.versusToolStripMenuItem.Tag = "versus_a";
+            this.versusToolStripMenuItem.Text = "Versus A";
+            this.versusToolStripMenuItem.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
             // 
             // Snake
             // 
@@ -200,5 +279,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblMeat;
         private System.Windows.Forms.ToolStripMenuItem competiciónIndividualToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem entrenamientoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem versusToolStripMenuItem;
     }
 }

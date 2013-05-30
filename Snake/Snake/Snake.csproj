@@ -50,6 +50,8 @@
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\IGameController.cs" />
     <Compile Include="Controllers\MeatController.cs" />
+    <Compile Include="Controllers\TrainingController.cs" />
+    <Compile Include="Controllers\VSAController.cs" />
     <Compile Include="Models\Pixel.cs" />
     <Compile Include="Controllers\SnakeController.cs" />
     <Compile Include="Program.cs" />

@@ -91,7 +91,6 @@ namespace Snake.Controllers
                 y = _random.Next((int)(this._maxY / _lPixel));
             }
             this._meatPixel = new Pixel(x*_lPixel, y*_lPixel, this._initialColor);
-            this._eatenValue = this._meatValue;
             this._meatValue = _random.Next(this._minValue, this._maxValue);
             this._countRefresh = 0;
         }
@@ -107,14 +106,8 @@ namespace Snake.Controllers
 
         public Pixel refresh(List<Pixel> pixelSnake, List<Pixel> pixelsObstacle)
         {
-            this._isMeatEaten = false;
-            foreach (Pixel snakeBody in pixelSnake)
-            {
-                if (snakeBody.getX() == this._meatPixel.getX() && snakeBody.getY() == this._meatPixel.getY())
-                {
-                    this._isMeatEaten = true;
-                }
-            }
+            this._isMeatEaten = isEaten(pixelSnake);
+
             if (this._isMeatEaten || this._countRefresh > 15)
             {
                 if (pixelsObstacle != null)
@@ -153,6 +146,19 @@ namespace Snake.Controllers
         public int getEatenValue()
         {
             return this._eatenValue;
+        }
+
+        public bool isEaten(List<Pixel> snake)
+        {
+            foreach (Pixel snakeBody in snake)
+            {
+                if (snakeBody.getX() == this._meatPixel.getX() && snakeBody.getY() == this._meatPixel.getY())
+                {
+                    this._eatenValue = this._meatValue;
+                    return true;
+                }
+            }
+            return false;
         }
 
         #endregion

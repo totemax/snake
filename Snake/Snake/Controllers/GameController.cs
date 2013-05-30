@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Snake.Models;
-
+using System.Collections;
 namespace Snake.Controllers
 {
     public abstract class GameController :IGameController
@@ -12,6 +12,8 @@ namespace Snake.Controllers
         protected MeatController _meat;
         protected int _tickTimer = 1000;
         protected static string GAME_OVER = "GAME OVER";
+        public static string FIRST_PLAYER = "FIRST";
+        public static string SECOND_PLAYER = "SECOND";
         protected int _pixelL;
         protected int _xLength;
         protected int _yLength;
@@ -41,10 +43,10 @@ namespace Snake.Controllers
             return false;
         }
 
-        public List<Pixel> refresh(SnakeController.Directions direction)
+        public List<Pixel> refresh(Hashtable direction)
         {
-            if(direction != SnakeController.Directions.NO_KEY){
-                this._snake.setDirection(direction);
+            if(direction.ContainsKey(FIRST_PLAYER)){
+                this._snake.setDirection((SnakeController.Directions) direction[FIRST_PLAYER]);
             }
             this._snake.refresh();
             List<Pixel> snakePixels = this._snake.getSnakeBody();

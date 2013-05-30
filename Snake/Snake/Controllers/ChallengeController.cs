@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using Snake.Models;
-
+using System.Collections;
 namespace Snake.Controllers
 {
 
@@ -15,9 +15,9 @@ namespace Snake.Controllers
 
         private XmlDocument _lvlsDoc = null;
 
-        private int _lvlNum = 1;
+        protected int _lvlNum = 1;
         private int _scoreLvl = 10;
-        private List<Pixel> _obstacles = null;
+        protected List<Pixel> _obstacles = null;
         private Boolean _isWinner = false;
 
         public ChallengeController(int maxX, int maxY, int pixelL)
@@ -31,7 +31,7 @@ namespace Snake.Controllers
              this._meat.generateMeat(this._snake.getSnakeBody().Concat(this._obstacles).ToList());
         }
 
-        public new List<Pixel> refresh(SnakeController.Directions direction)
+        public new List<Pixel> refresh(Hashtable direction)
         {
             List<Pixel> initialPixels = base.refresh(direction);
             if (this._snake.getLength() > this._scoreLvl)
@@ -55,7 +55,7 @@ namespace Snake.Controllers
             return null;
         }
 
-        private void loadLvl()
+        protected void loadLvl()
         {
             if (this._lvlsDoc == null)
             {
