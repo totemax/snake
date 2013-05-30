@@ -221,10 +221,11 @@ namespace Snake.Views
         //Evento que lanza la pantalla de "Acerca de..."
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            timer1.Stop();
+            var isTimerStarted = this.timer1.Enabled;
+            if (isTimerStarted) timer1.Stop();
             About about = new About();
             about.ShowDialog();
-            timer1.Start();
+            if (isTimerStarted) timer1.Start();
         }
 
         #endregion
