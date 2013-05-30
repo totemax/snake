@@ -28,31 +28,154 @@
     <tickTimer>150</tickTimer>
     <scoreLvl>20</scoreLvl>
     <board newBoard="true">
-      <obstacle x="4" y="4" r="255" g="215" b="0" />
-      <obstacle x="4" y="5" r="255" g="215" b="0"/>
-      <obstacle x="4" y="6" r="255" g="215" b="0"/>
+      <obstacle x="0" y="0" r="255" g="215" b="0" />
+      <obstacle x="0" y="1" r="255" g="215" b="0" />
+      <obstacle x="0" y="2" r="255" g="215" b="0" />
+      <obstacle x="0" y="3" r="255" g="215" b="0" />
+      <obstacle x="1" y="0" r="255" g="215" b="0" />
+      <obstacle x="2" y="0" r="255" g="215" b="0" />
+      <obstacle x="3" y="0" r="255" g="215" b="0" />
+
+      <obstacle x="16" y="0" r="255" g="215" b="0" />
+      <obstacle x="17" y="0" r="255" g="215" b="0" />
+      <obstacle x="18" y="0" r="255" g="215" b="0" />
+      <obstacle x="19" y="0" r="255" g="215" b="0" />
+      <obstacle x="19" y="1" r="255" g="215" b="0" />
+      <obstacle x="19" y="2" r="255" g="215" b="0" />
+      <obstacle x="19" y="3" r="255" g="215" b="0" />
+
+      <obstacle x="0" y="16" r="255" g="215" b="0" />
+      <obstacle x="0" y="17" r="255" g="215" b="0" />
+      <obstacle x="0" y="18" r="255" g="215" b="0" />
+      <obstacle x="0" y="19" r="255" g="215" b="0" />
+      <obstacle x="1" y="19" r="255" g="215" b="0" />
+      <obstacle x="2" y="19" r="255" g="215" b="0" />
+      <obstacle x="3" y="19" r="255" g="215" b="0" />
+      <obstacle x="1" y="19" r="255" g="215" b="0" />
+
+
+      <obstacle x="16" y="19" r="255" g="215" b="0" />
+      <obstacle x="17" y="19" r="255" g="215" b="0" />
+      <obstacle x="18" y="19" r="255" g="215" b="0" />
+      <obstacle x="19" y="19" r="255" g="215" b="0" />
+      <obstacle x="19" y="18" r="255" g="215" b="0" />
+      <obstacle x="19" y="17" r="255" g="215" b="0" />
+      <obstacle x="19" y="16" r="255" g="215" b="0" />
     </board>
   </level>
   <level id="lvl_4">
     <tickTimer>100</tickTimer>
     <scoreLvl>25</scoreLvl>
     <board newBoard="false">
+      <obstacle x="19" y="16" r="255" g="215" b="0" />
+      <obstacle x="19" y="16" r="255" g="215" b="0" />
+      <obstacle x="19" y="16" r="255" g="215" b="0" />
+      <obstacle x="19" y="16" r="255" g="215" b="0" />
+      <obstacle x="19" y="16" r="255" g="215" b="0" />
     </board>
   </level>
   <level id="lvl_5">
     <tickTimer>75</tickTimer>
     <scoreLvl>30</scoreLvl>
     <board newBoard="true">
-      <obstacle x="7" y="5" r="255" g="215" b="0" />
-      <obstacle x="8" y="5" r="255" g="215" b="0"/>
-      <obstacle x="9" y="5" r="255" g="215" b="0"/>
-      <obstacle x="10" y="5" r="255" g="215" b="0"/>
+      <obstacle x="0" y="0" r="255" g="215" b="0" />
+      <obstacle x="0" y="1" r="255" g="215" b="0" />
+      <obstacle x="0" y="2" r="255" g="215" b="0" />
+      <obstacle x="0" y="3" r="255" g="215" b="0" />
+      <obstacle x="1" y="0" r="255" g="215" b="0" />
+      <obstacle x="2" y="0" r="255" g="215" b="0" />
+      <obstacle x="3" y="0" r="255" g="215" b="0" />
+            
+      <obstacle x="16" y="0" r="255" g="215" b="0" />
+      <obstacle x="17" y="0" r="255" g="215" b="0" />
+      <obstacle x="18" y="0" r="255" g="215" b="0" />
+      <obstacle x="19" y="0" r="255" g="215" b="0" />
+      <obstacle x="19" y="1" r="255" g="215" b="0" />
+      <obstacle x="19" y="2" r="255" g="215" b="0" />
+      <obstacle x="19" y="3" r="255" g="215" b="0" />
+
+      <obstacle x="0" y="16" r="255" g="215" b="0" />
+      <obstacle x="0" y="17" r="255" g="215" b="0" />
+      <obstacle x="0" y="18" r="255" g="215" b="0" />
+      <obstacle x="0" y="19" r="255" g="215" b="0" />
+      <obstacle x="1" y="19" r="255" g="215" b="0" />
+      <obstacle x="2" y="19" r="255" g="215" b="0" />
+      <obstacle x="3" y="19" r="255" g="215" b="0" />
+      <obstacle x="1" y="19" r="255" g="215" b="0" />
+
+      <obstacle x="16" y="19" r="255" g="215" b="0" />
+      <obstacle x="17" y="19" r="255" g="215" b="0" />
+      <obstacle x="18" y="19" r="255" g="215" b="0" />
+      <obstacle x="19" y="19" r="255" g="215" b="0" />
+      <obstacle x="19" y="18" r="255" g="215" b="0" />
+      <obstacle x="19" y="17" r="255" g="215" b="0" />
+      <obstacle x="19" y="16" r="255" g="215" b="0" />
+
+
+      <obstacle x="7" y="7" r="255" g="215" b="0" />
+      <obstacle x="7" y="12" r="255" g="215" b="0" />
+      <obstacle x="8" y="7" r="255" g="215" b="0" />
+      <obstacle x="8" y="12" r="255" g="215" b="0" />
+      <obstacle x="9" y="7" r="255" g="215" b="0" />
+      <obstacle x="9" y="12" r="255" g="215" b="0" />
+      <obstacle x="10" y="7" r="255" g="215" b="0" />
+      <obstacle x="10" y="12" r="255" g="215" b="0" />
+      <obstacle x="11" y="7" r="255" g="215" b="0" />
+      <obstacle x="11" y="12" r="255" g="215" b="0" />
+      <obstacle x="12" y="7" r="255" g="215" b="0" />
+      <obstacle x="12" y="12" r="255" g="215" b="0" />
+
+      
     </board>
   </level>
   <level id="lvl_6">
-    <tickTimer>50</tickTimer>
+    <tickTimer>75</tickTimer>
     <scoreLvl>35</scoreLvl>
     <board newBoard="true">
+      <obstacle x="5" y="4" r="255" g="215" b="0" />
+      <obstacle x="6" y="4" r="255" g="215" b="0" />
+      <obstacle x="7" y="4" r="255" g="215" b="0" />
+      <obstacle x="8" y="4" r="255" g="215" b="0" />
+      <obstacle x="9" y="4" r="255" g="215" b="0" />
+      <obstacle x="10" y="4" r="255" g="215" b="0" />
+      <obstacle x="11" y="4" r="255" g="215" b="0" />
+      <obstacle x="12" y="4" r="255" g="215" b="0" />
+      <obstacle x="13" y="4" r="255" g="215" b="0" />
+      <obstacle x="14" y="4" r="255" g="215" b="0" />
+      <obstacle x="5" y="17" r="255" g="215" b="0" />    
+      <obstacle x="6" y="17" r="255" g="215" b="0" />
+      <obstacle x="7" y="17" r="255" g="215" b="0" />
+      <obstacle x="8" y="17" r="255" g="215" b="0" />
+      <obstacle x="9" y="17" r="255" g="215" b="0" />
+      <obstacle x="10" y="17" r="255" g="215" b="0" />
+      <obstacle x="11" y="17" r="255" g="215" b="0" />
+      <obstacle x="12" y="17" r="255" g="215" b="0" />
+      <obstacle x="13" y="17" r="255" g="215" b="0" />
+      <obstacle x="14" y="17" r="255" g="215" b="0" />
+
+      <obstacle x="0" y="0" r="255" g="215" b="0" />
+      <obstacle x="0" y="1" r="255" g="215" b="0" />
+      <obstacle x="1" y="0" r="255" g="215" b="0" />
+   
+      <obstacle x="18" y="0" r="255" g="215" b="0" />
+      <obstacle x="19" y="0" r="255" g="215" b="0" />
+      <obstacle x="19" y="1" r="255" g="215" b="0" />
+
+      <obstacle x="0" y="18" r="255" g="215" b="0" />
+      <obstacle x="0" y="19" r="255" g="215" b="0" />
+      <obstacle x="1" y="19" r="255" g="215" b="0" />
+
+      <obstacle x="18" y="19" r="255" g="215" b="0" />
+      <obstacle x="19" y="19" r="255" g="215" b="0" />
+      <obstacle x="19" y="18" r="255" g="215" b="0" />
+
+      <obstacle x="9" y="8" r="255" g="215" b="0" />
+
+      <obstacle x="10" y="10" r="255" g="215" b="0" />
+      
+      
+      
     </board>
   </level>
+ 
 </levels>
