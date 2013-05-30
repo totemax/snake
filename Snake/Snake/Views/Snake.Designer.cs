@@ -43,15 +43,16 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.versusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versusBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMeat = new System.Windows.Forms.Label();
-            this.versusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.versusBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.lvlLbl = new System.Windows.Forms.Label();
+            this.lblMessages = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvasSnake)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -100,7 +101,7 @@
             this.versusToolStripMenuItem,
             this.versusBToolStripMenuItem});
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
             // 
             // competiciónIndividualToolStripMenuItem
@@ -172,10 +173,26 @@
             this.toolStripMenuItem7.Text = "6";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
             // 
+            // versusToolStripMenuItem
+            // 
+            this.versusToolStripMenuItem.Name = "versusToolStripMenuItem";
+            this.versusToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.versusToolStripMenuItem.Tag = "versus_a";
+            this.versusToolStripMenuItem.Text = "Versus A";
+            this.versusToolStripMenuItem.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
+            // 
+            // versusBToolStripMenuItem
+            // 
+            this.versusBToolStripMenuItem.Name = "versusBToolStripMenuItem";
+            this.versusBToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.versusBToolStripMenuItem.Tag = "versus_b";
+            this.versusBToolStripMenuItem.Text = "Versus B";
+            this.versusBToolStripMenuItem.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
+            // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -213,22 +230,6 @@
             this.lblMeat.TabIndex = 5;
             this.lblMeat.Text = "0";
             // 
-            // versusToolStripMenuItem
-            // 
-            this.versusToolStripMenuItem.Name = "versusToolStripMenuItem";
-            this.versusToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.versusToolStripMenuItem.Tag = "versus_a";
-            this.versusToolStripMenuItem.Text = "Versus A";
-            this.versusToolStripMenuItem.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
-            // 
-            // versusBToolStripMenuItem
-            // 
-            this.versusBToolStripMenuItem.Name = "versusBToolStripMenuItem";
-            this.versusBToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.versusBToolStripMenuItem.Tag = "versus_b";
-            this.versusBToolStripMenuItem.Text = "Versus B";
-            this.versusBToolStripMenuItem.Click += new System.EventHandler(this.gameModeToolStripMenuItem_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -247,11 +248,22 @@
             this.lvlLbl.TabIndex = 7;
             this.lvlLbl.Text = "-";
             // 
+            // lblMessages
+            // 
+            this.lblMessages.BackColor = System.Drawing.Color.LightGreen;
+            this.lblMessages.Font = new System.Drawing.Font("MineCrafter 3", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessages.Location = new System.Drawing.Point(25, 55);
+            this.lblMessages.Name = "lblMessages";
+            this.lblMessages.Size = new System.Drawing.Size(234, 233);
+            this.lblMessages.TabIndex = 8;
+            this.lblMessages.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Snake
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 338);
+            this.Controls.Add(this.lblMessages);
             this.Controls.Add(this.lvlLbl);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblMeat);
@@ -298,5 +310,6 @@
         private System.Windows.Forms.ToolStripMenuItem versusBToolStripMenuItem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lvlLbl;
+        private System.Windows.Forms.Label lblMessages;
     }
 }

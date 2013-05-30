@@ -64,19 +64,24 @@ namespace Snake.Views
         // Evento encargado de realizar el pintado del canvas
         private void canvasSnake_Paint(object sender, PaintEventArgs e)
         {
-            if(this._pixelsToRender != null)
-            {
-                foreach (Pixel px in this._pixelsToRender)
-                {
-                    Color pxColor = px.getColor();
-                    Rectangle rct = new Rectangle(px.getX(), px.getY(), this.PIXEL_LENGTH, this.PIXEL_LENGTH);
-                    e.Graphics.FillRectangle(new SolidBrush(pxColor), rct);
-                }
-            }
             if (this._messageToRender != null)
             {
-                this.drawText(this._messageToRender, e);
+                this.drawText(this._messageToRender);
                 this._messageToRender = null;
+            }
+            else
+            {
+                this.lblMessages.Text = "";
+                this.lblMessages.Visible = false;
+                if (this._pixelsToRender != null)
+                {
+                    foreach (Pixel px in this._pixelsToRender)
+                    {
+                        Color pxColor = px.getColor();
+                        Rectangle rct = new Rectangle(px.getX(), px.getY(), this.PIXEL_LENGTH, this.PIXEL_LENGTH);
+                        e.Graphics.FillRectangle(new SolidBrush(pxColor), rct);
+                    }
+                }
             }
         }
 
@@ -233,9 +238,10 @@ namespace Snake.Views
         #region [Functions & Methods]
 
         // Funcion que se encarga de pintar el letrero de "Game Over" cuando perdemos
-        private void drawText(String message, PaintEventArgs e)
+        private void drawText(String message)
         {
-            e.Graphics.DrawString(message, new Font("Impact", 12), Brushes.Red, new Point(this.canvasSnake.Width / 10, this.canvasSnake.Height / 3));
+            this.lblMessages.Visible = true;
+            lblMessages.Text = message;
         }        
 
         #endregion
